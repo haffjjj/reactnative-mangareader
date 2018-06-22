@@ -84,6 +84,15 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 }, {
                     id: 7,
                     title: 'test2'
+                }, {
+                    id: 8,
+                    title: 'test2'
+                }, {
+                    id: 9,
+                    title: 'test2'
+                }, {
+                    id: 10,
+                    title: 'test2'
                 }]
             }, _this._keyExtractor = function (item, index) {
                 return item.id;
@@ -99,7 +108,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 51
+                            lineNumber: 63
                         }
                     },
                     _react3.default.createElement(
@@ -107,37 +116,22 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 52
+                                lineNumber: 64
                             }
                         },
-                        _react3.default.createElement(
-                            _reactNative.Text,
-                            {
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 53
-                                }
-                            },
-                            "Kumar Pratik"
-                        ),
-                        _react3.default.createElement(
-                            _reactNative.Text,
-                            {
-                                note: true,
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 54
-                                }
-                            },
-                            "Doing what you like will always keep you happy . ."
-                        )
+                        _react3.default.createElement(_reactNative.View, {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 65
+                            }
+                        })
                     ),
                     _react3.default.createElement(
                         _nativeBase.Right,
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 56
+                                lineNumber: 69
                             }
                         },
                         _react3.default.createElement(
@@ -146,7 +140,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 note: true,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 57
+                                    lineNumber: 70
                                 }
                             },
                             "3:43 pm"
@@ -165,7 +159,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         style: style.main.container,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 64
+                            lineNumber: 77
                         }
                     },
                     _react3.default.createElement(
@@ -173,7 +167,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 65
+                                lineNumber: 78
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -201,7 +195,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 66
+                                lineNumber: 79
                             }
                         })
                     ),
@@ -210,7 +204,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 87
+                                lineNumber: 100
                             }
                         },
                         _react3.default.createElement(_reactNative.FlatList, {
@@ -218,12 +212,16 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             onRefresh: function onRefresh() {
                                 return alert('onPull');
                             },
+                            onEndReachedThreshold: 0.5,
+                            onEndReached: function onEndReached() {
+                                return alert('end reach');
+                            },
                             data: this.state.data,
                             keyExtractor: this._keyExtractor,
                             renderItem: this._renderItem,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 88
+                                lineNumber: 101
                             }
                         })
                     )

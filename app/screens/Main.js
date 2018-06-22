@@ -37,6 +37,18 @@ export default class App extends Component{
             {
                 id: 7,
                 title: 'test2'
+            },
+            {
+                id: 8,
+                title: 'test2'
+            },
+            {
+                id: 9,
+                title: 'test2'
+            },
+            {
+                id: 10,
+                title: 'test2'
             }
         ]
     }
@@ -88,6 +100,8 @@ export default class App extends Component{
                     <FlatList
                         refreshing = {false}
                         onRefresh = {()=>alert('onPull')}
+                        onEndReachedThreshold = {0.5}
+                        onEndReached = {() =>alert('end reach')}
                         data={this.state.data}
                         // extraData={this.state.data}
                         keyExtractor={this._keyExtractor}
