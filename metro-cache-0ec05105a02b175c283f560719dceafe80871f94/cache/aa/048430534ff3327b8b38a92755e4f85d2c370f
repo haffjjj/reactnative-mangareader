@@ -1,0 +1,30 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _reactNavigation = _require(_dependencyMap[0], "react-navigation");
+
+    var _screens = _require(_dependencyMap[1], "./app/screens/");
+
+    var Screens = _interopRequireWildcard(_screens);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+    exports.default = (0, _reactNavigation.createStackNavigator)({
+        Main: {
+            screen: Screens.Main
+        },
+        Chapter: {
+            screen: Screens.Chapter
+        },
+        ChapterList: {
+            screen: Screens.ChapterList
+        },
+        MangaDetails: {
+            screen: Screens.MangaDetails
+        }
+    }, {
+        headerMode: 'none'
+    });
+});

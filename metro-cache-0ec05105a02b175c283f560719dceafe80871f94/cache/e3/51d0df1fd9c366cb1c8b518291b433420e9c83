@@ -1,0 +1,21 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.ViewPropTypes = exports.InteractionManager = undefined;
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _interactionManager = _require(_dependencyMap[1], "./interactionManager");
+
+  var _interactionManager2 = _interopRequireDefault(_interactionManager);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  exports.InteractionManager = _interactionManager2.default;
+  exports.ViewPropTypes = _reactNative.ViewPropTypes;
+});

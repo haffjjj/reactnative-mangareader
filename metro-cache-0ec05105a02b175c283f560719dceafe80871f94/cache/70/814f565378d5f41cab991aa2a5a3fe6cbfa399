@@ -1,0 +1,240 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Toolbar/CenterElement.react.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _reactNative = _require(_dependencyMap[3], "react-native");
+
+    var _utils = _require(_dependencyMap[4], "../utils");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        CenterElement: {
+            displayName: "CenterElement"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Toolbar/CenterElement.react.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var propTypes = {
+        isSearchActive: _propTypes2.default.bool.isRequired,
+        searchValue: _propTypes2.default.string.isRequired,
+        searchable: _propTypes2.default.shape({
+            autoFocus: _propTypes2.default.bool,
+            autoCapitalize: _reactNative.TextInput.propTypes.autoCapitalize,
+            autoCorrect: _propTypes2.default.bool,
+            onChangeText: _propTypes2.default.func,
+            onSubmitEditing: _propTypes2.default.func,
+            placeholder: _propTypes2.default.string
+        }),
+        style: _propTypes2.default.shape({
+            centerElementContainer: _utils.ViewPropTypes.style,
+            titleText: _reactNative.Text.propTypes.style
+        }),
+        centerElement: _propTypes2.default.node,
+        onPress: _propTypes2.default.func,
+        onSearchTextChange: _propTypes2.default.func.isRequired
+    };
+    var defaultProps = {
+        onPress: null,
+        centerElement: null,
+        searchable: null,
+        style: {}
+    };
+    var contextTypes = {
+        uiTheme: _propTypes2.default.object.isRequired
+    };
+
+    function getStyles(props, context) {
+        var state = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+        var leftElement = props.leftElement;
+        var _context$uiTheme = context.uiTheme,
+            toolbar = _context$uiTheme.toolbar,
+            toolbarSearchActive = _context$uiTheme.toolbarSearchActive;
+        var isSearchActive = state.isSearchActive;
+        var local = {};
+
+        if (props.color) {
+            local.icon = {
+                color: props.color
+            };
+        }
+
+        if (!leftElement) {
+            local.centerElementContainer = {
+                marginLeft: 16
+            };
+        }
+
+        return {
+            centerElementContainer: [toolbar.centerElementContainer, isSearchActive && toolbarSearchActive.centerElementContainer, local.centerElementContainer, props.style.centerElementContainer],
+            titleText: [toolbar.titleText, isSearchActive && toolbarSearchActive.titleText, props.style.titleText]
+        };
+    }
+
+    var CenterElement = _wrapComponent("CenterElement")(function (_PureComponent) {
+        _inherits(CenterElement, _PureComponent);
+
+        function CenterElement(props, context) {
+            _classCallCheck(this, CenterElement);
+
+            var _this = _possibleConstructorReturn(this, (CenterElement.__proto__ || Object.getPrototypeOf(CenterElement)).call(this, props, context));
+
+            _this.animateElements = function (nextIsSearchActive) {
+                _reactNative.Animated.timing(_this.state.opacityValue, {
+                    toValue: 0,
+                    duration: 112,
+                    easing: _reactNative.Easing.linear,
+                    useNativeDriver: true
+                }).start(function () {
+                    _this.setState({
+                        isSearchActive: nextIsSearchActive
+                    });
+
+                    _reactNative.Animated.timing(_this.state.opacityValue, {
+                        toValue: 1,
+                        duration: 112,
+                        easing: _reactNative.Easing.linear,
+                        useNativeDriver: true
+                    }).start();
+                });
+            };
+
+            _this.state = {
+                isSearchActive: props.isSearchActive,
+                opacityValue: new _reactNative.Animated.Value(1)
+            };
+            return _this;
+        }
+
+        _createClass(CenterElement, [{
+            key: "componentWillReceiveProps",
+            value: function componentWillReceiveProps(nextProps) {
+                if (this.props.isSearchActive !== nextProps.isSearchActive) {
+                    this.animateElements(nextProps.isSearchActive);
+                }
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _this2 = this;
+
+                var _props = this.props,
+                    searchable = _props.searchable,
+                    centerElement = _props.centerElement,
+                    onPress = _props.onPress,
+                    onSearchTextChange = _props.onSearchTextChange,
+                    searchValue = _props.searchValue;
+                var _state = this.state,
+                    opacityValue = _state.opacityValue,
+                    isSearchActive = _state.isSearchActive;
+                var styles = getStyles(this.props, this.context, this.state);
+                var content = null;
+
+                if (searchable && isSearchActive) {
+                    content = _react3.default.createElement(_reactNative.TextInput, {
+                        ref: function ref(_ref) {
+                            _this2.searchFieldRef = _ref;
+                        },
+                        autoFocus: searchable.autoFocus,
+                        autoCapitalize: searchable.autoCapitalize,
+                        autoCorrect: searchable.autoCorrect,
+                        onChangeText: onSearchTextChange,
+                        onSubmitEditing: searchable.onSubmitEditing,
+                        placeholder: searchable.placeholder,
+                        style: [styles.titleText, {
+                            marginLeft: 0
+                        }],
+                        underlineColorAndroid: "transparent",
+                        value: searchValue,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 124
+                        }
+                    });
+                } else if (typeof centerElement === 'string') {
+                    content = _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            numberOfLines: 1,
+                            style: styles.titleText,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 139
+                            }
+                        },
+                        centerElement
+                    );
+                } else {
+                    content = centerElement;
+                }
+
+                return _react3.default.createElement(
+                    _reactNative.TouchableWithoutFeedback,
+                    {
+                        key: "center",
+                        onPress: onPress,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 148
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Animated.View,
+                        {
+                            style: [styles.centerElementContainer, {
+                                opacity: opacityValue
+                            }],
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 149
+                            }
+                        },
+                        content
+                    )
+                );
+            }
+        }]);
+
+        return CenterElement;
+    }(_react2.PureComponent));
+
+    CenterElement.propTypes = propTypes;
+    CenterElement.defaultProps = defaultProps;
+    CenterElement.contextTypes = contextTypes;
+    exports.default = CenterElement;
+});

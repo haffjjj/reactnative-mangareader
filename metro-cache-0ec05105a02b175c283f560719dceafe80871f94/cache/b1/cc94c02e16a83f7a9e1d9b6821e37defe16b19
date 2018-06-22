@@ -1,0 +1,677 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/ListItem/ListItem.react.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _reactNative = _require(_dependencyMap[3], "react-native");
+
+    var _utils = _require(_dependencyMap[4], "../utils");
+
+    var _Divider = _require(_dependencyMap[5], "../Divider");
+
+    var _Divider2 = _interopRequireDefault(_Divider);
+
+    var _Icon = _require(_dependencyMap[6], "../Icon");
+
+    var _Icon2 = _interopRequireDefault(_Icon);
+
+    var _IconToggle = _require(_dependencyMap[7], "../IconToggle");
+
+    var _IconToggle2 = _interopRequireDefault(_IconToggle);
+
+    var _RippleFeedback = _require(_dependencyMap[8], "../RippleFeedback");
+
+    var _RippleFeedback2 = _interopRequireDefault(_RippleFeedback);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        ListItem: {
+            displayName: "ListItem"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/ListItem/ListItem.react.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var UIManager = _reactNative.NativeModules.UIManager;
+    var propTypes = {
+        testID: _propTypes2.default.string,
+        dense: _propTypes2.default.bool,
+        divider: _propTypes2.default.bool,
+        onPress: _propTypes2.default.func,
+        onPressValue: _propTypes2.default.any,
+        onLongPress: _propTypes2.default.func,
+        numberOfLines: _propTypes2.default.oneOf([1, 2, 3, 'dynamic']),
+        style: _propTypes2.default.shape({
+            container: _utils.ViewPropTypes.style,
+            contentViewContainer: _utils.ViewPropTypes.style,
+            leftElementContainer: _utils.ViewPropTypes.style,
+            centerElementContainer: _utils.ViewPropTypes.style,
+            textViewContainer: _utils.ViewPropTypes.style,
+            primaryText: _reactNative.Text.propTypes.style,
+            firstLine: _utils.ViewPropTypes.style,
+            primaryTextContainer: _reactNative.Text.propTypes.style,
+            secondaryText: _reactNative.Text.propTypes.style,
+            tertiaryText: _reactNative.Text.propTypes.style,
+            rightElementContainer: _utils.ViewPropTypes.style,
+            leftElement: _propTypes2.default.style,
+            rightElement: _propTypes2.default.style
+        }),
+        leftElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.string]),
+        onLeftElementPress: _propTypes2.default.func,
+        centerElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.string, _propTypes2.default.shape({
+            primaryText: _propTypes2.default.string.isRequired,
+            secondaryText: _propTypes2.default.string,
+            tertiaryText: _propTypes2.default.string
+        })]),
+        rightElement: _propTypes2.default.oneOfType([_propTypes2.default.element, _propTypes2.default.string, _propTypes2.default.shape({
+            menu: _propTypes2.default.shape({
+                labels: _propTypes2.default.array.isRequired
+            })
+        })]),
+        onRightElementPress: _propTypes2.default.func,
+        children: _propTypes2.default.node
+    };
+    var defaultProps = {
+        testID: null,
+        dense: false,
+        onPress: null,
+        onPressValue: null,
+        onLongPress: null,
+        divider: false,
+        leftElement: null,
+        onLeftElementPress: null,
+        centerElement: null,
+        rightElement: null,
+        onRightElementPress: null,
+        numberOfLines: 1,
+        children: null,
+        style: {}
+    };
+    var contextTypes = {
+        uiTheme: _propTypes2.default.object.isRequired
+    };
+
+    function getNumberOfSecondaryTextLines(numberOfLines) {
+        if (numberOfLines === 'dynamic') {
+            return null;
+        }
+
+        return numberOfLines - 1;
+    }
+
+    function getNumberOfLines(props) {
+        var numberOfLines = props.numberOfLines,
+            centerElement = props.centerElement;
+
+        if (centerElement && centerElement.secondaryText && centerElement.tertiaryText && (!numberOfLines || numberOfLines < 3)) {
+            return 3;
+        } else if (centerElement && centerElement.secondaryText && (!numberOfLines || numberOfLines < 2)) {
+            return 2;
+        }
+
+        return numberOfLines || 1;
+    }
+
+    function getListItemHeight(props, state) {
+        var leftElement = props.leftElement,
+            dense = props.dense;
+        var numberOfLines = state.numberOfLines;
+
+        if (numberOfLines === 'dynamic') {
+            return null;
+        }
+
+        if (!leftElement && numberOfLines === 1) {
+            return dense ? 40 : 48;
+        }
+
+        if (numberOfLines === 1) {
+            return dense ? 48 : 56;
+        } else if (numberOfLines === 2) {
+            return dense ? 60 : 72;
+        } else if (numberOfLines === 3) {
+            return dense ? 80 : 88;
+        }
+
+        return null;
+    }
+
+    function getStyles(props, context, state) {
+        var leftElement = props.leftElement,
+            rightElement = props.rightElement;
+        var listItem = context.uiTheme.listItem;
+        var numberOfLines = state.numberOfLines;
+        var container = {
+            height: getListItemHeight(props, state)
+        };
+        var contentViewContainer = {};
+        var leftElementContainer = {};
+        var centerElementContainer = {};
+
+        if (numberOfLines === 'dynamic') {
+            contentViewContainer.paddingVertical = 16;
+            leftElementContainer.alignSelf = 'flex-start';
+        }
+
+        if (!rightElement) {
+            contentViewContainer.paddingRight = 16;
+        }
+
+        if (!leftElement) {
+            centerElementContainer.paddingLeft = 16;
+        }
+
+        return {
+            container: [listItem.container, container, props.style.container],
+            content: [listItem.content, props.style.content],
+            contentViewContainer: [listItem.contentViewContainer, contentViewContainer, props.style.contentViewContainer],
+            leftElementContainer: [listItem.leftElementContainer, leftElementContainer, props.style.leftElementContainer],
+            centerElementContainer: [listItem.centerElementContainer, centerElementContainer, props.style.centerElementContainer],
+            textViewContainer: [listItem.textViewContainer, props.style.textViewContainer],
+            primaryText: [listItem.primaryText, props.style.primaryText],
+            firstLine: [listItem.firstLine, props.style.firstLine],
+            primaryTextContainer: [listItem.primaryTextContainer, props.style.primaryTextContainer],
+            secondaryText: [listItem.secondaryText, props.style.secondaryText],
+            tertiaryText: [listItem.tertiaryText, props.style.tertiaryText],
+            rightElementContainer: [listItem.rightElementContainer, props.style.rightElementContainer],
+            leftElement: [listItem.leftElement, props.style.leftElement],
+            rightElement: [listItem.rightElement, props.style.rightElement]
+        };
+    }
+
+    var ListItem = _wrapComponent("ListItem")(function (_PureComponent) {
+        _inherits(ListItem, _PureComponent);
+
+        function ListItem(props) {
+            _classCallCheck(this, ListItem);
+
+            var _this = _possibleConstructorReturn(this, (ListItem.__proto__ || Object.getPrototypeOf(ListItem)).call(this, props));
+
+            _this.onMenuPressed = function (labels) {
+                var _this$props = _this.props,
+                    onRightElementPress = _this$props.onRightElementPress,
+                    onPressValue = _this$props.onPressValue;
+                UIManager.showPopupMenu((0, _reactNative.findNodeHandle)(_this.menu), labels, function () {}, function (result, index) {
+                    if (onRightElementPress) {
+                        onRightElementPress({
+                            action: 'menu',
+                            result: result,
+                            index: index,
+                            value: onPressValue
+                        });
+                    }
+                });
+            };
+
+            _this.onListItemPressed = function () {
+                var _this$props2 = _this.props,
+                    onPress = _this$props2.onPress,
+                    onPressValue = _this$props2.onPressValue;
+
+                if (onPress) {
+                    onPress(onPressValue);
+                }
+            };
+
+            _this.onListItemLongPressed = function () {
+                var _this$props3 = _this.props,
+                    onLongPress = _this$props3.onLongPress,
+                    onPressValue = _this$props3.onPressValue;
+
+                if (onLongPress) {
+                    onLongPress(onPressValue);
+                }
+            };
+
+            _this.onLeftElementPressed = function () {
+                var _this$props4 = _this.props,
+                    onLeftElementPress = _this$props4.onLeftElementPress,
+                    onPress = _this$props4.onPress,
+                    onPressValue = _this$props4.onPressValue;
+
+                if (onLeftElementPress) {
+                    onLeftElementPress(onPressValue);
+                } else if (onPress) {
+                    onPress(onPressValue);
+                }
+            };
+
+            _this.onRightElementPressed = function () {
+                var _this$props5 = _this.props,
+                    onRightElementPress = _this$props5.onRightElementPress,
+                    onPressValue = _this$props5.onPressValue;
+
+                if (onRightElementPress) {
+                    onRightElementPress(onPressValue);
+                }
+            };
+
+            _this.getPointerEvents = function () {
+                var _this$props6 = _this.props,
+                    onLeftElementPress = _this$props6.onLeftElementPress,
+                    leftElement = _this$props6.leftElement,
+                    centerElement = _this$props6.centerElement,
+                    rightElement = _this$props6.rightElement;
+                return onLeftElementPress || _react3.default.isValidElement(leftElement) || _react3.default.isValidElement(centerElement) || rightElement ? 'auto' : 'box-only';
+            };
+
+            _this.renderLeftElement = function (styles) {
+                var leftElement = _this.props.leftElement;
+
+                if (!leftElement) {
+                    return null;
+                }
+
+                var flattenLeftElement = _reactNative.StyleSheet.flatten(styles.leftElement);
+
+                var content = null;
+
+                if (typeof leftElement === 'string') {
+                    content = _react3.default.createElement(
+                        _reactNative.TouchableWithoutFeedback,
+                        {
+                            onPress: _this.onLeftElementPressed,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 322
+                            }
+                        },
+                        _react3.default.createElement(_Icon2.default, {
+                            name: leftElement,
+                            color: flattenLeftElement.color,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 323
+                            }
+                        })
+                    );
+                } else {
+                    content = _react3.default.createElement(
+                        _reactNative.TouchableWithoutFeedback,
+                        {
+                            onPress: _this.onLeftElementPressed,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 328
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 329
+                                }
+                            },
+                            leftElement
+                        )
+                    );
+                }
+
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.leftElementContainer,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 337
+                        }
+                    },
+                    content
+                );
+            };
+
+            _this.renderCenterElement = function (styles) {
+                var centerElement = _this.props.centerElement;
+                var numberOfLines = getNumberOfSecondaryTextLines(_this.state.numberOfLines);
+                var content = null;
+
+                if (_react3.default.isValidElement(centerElement)) {
+                    content = centerElement;
+                } else if (centerElement) {
+                    var primaryText = null;
+                    var secondaryText = null;
+                    var tertiaryText = null;
+
+                    if (typeof centerElement === 'string') {
+                        primaryText = centerElement;
+                    } else {
+                        primaryText = centerElement.primaryText;
+                        secondaryText = centerElement.secondaryText;
+                        tertiaryText = centerElement.tertiaryText;
+                    }
+
+                    var secondLineNumber = !tertiaryText ? numberOfLines : 1;
+                    var thirdLineNumber = tertiaryText ? numberOfLines : 1;
+                    content = _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.textViewContainer,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 366
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.firstLine,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 367
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: styles.primaryTextContainer,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 368
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        numberOfLines: 1,
+                                        style: styles.primaryText,
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 369
+                                        }
+                                    },
+                                    primaryText
+                                )
+                            )
+                        ),
+                        secondaryText && _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 375
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    numberOfLines: secondLineNumber,
+                                    style: styles.secondaryText,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 376
+                                    }
+                                },
+                                secondaryText
+                            )
+                        ),
+                        tertiaryText && _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 382
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    numberOfLines: thirdLineNumber,
+                                    style: styles.tertiaryText,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 383
+                                    }
+                                },
+                                tertiaryText
+                            )
+                        )
+                    );
+                }
+
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.centerElementContainer,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 393
+                        }
+                    },
+                    content
+                );
+            };
+
+            _this.renderRightElement = function (styles) {
+                var rightElement = _this.props.rightElement;
+                var content = [];
+                var elements = null;
+
+                if (typeof rightElement === 'string') {
+                    elements = [rightElement];
+                } else if (Array.isArray(rightElement)) {
+                    elements = rightElement;
+                } else if (rightElement && rightElement.actions) {
+                    elements = rightElement.actions;
+                }
+
+                var flattenRightElement = _reactNative.StyleSheet.flatten(styles.rightElement);
+
+                if (elements) {
+                    content = elements.map(function (action) {
+                        return _react3.default.createElement(_IconToggle2.default, {
+                            key: action,
+                            color: flattenRightElement.color,
+                            name: action,
+                            size: 24,
+                            style: styles.rightElement,
+                            onPress: function onPress() {
+                                return _this.onRightElementPressed({
+                                    action: action
+                                });
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 416
+                            }
+                        });
+                    });
+                }
+
+                if (_react3.default.isValidElement(rightElement)) {
+                    content.push(_react3.default.cloneElement(rightElement, {
+                        key: 'customRightElement'
+                    }));
+                }
+
+                if (rightElement && rightElement.menu) {
+                    content.push(_react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            key: "menuIcon",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 435
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.View, {
+                            ref: function ref(c) {
+                                _this.menu = c;
+                            },
+                            style: {
+                                backgroundColor: 'transparent',
+                                width: _reactNative.StyleSheet.hairlineWidth,
+                                height: _reactNative.StyleSheet.hairlineWidth
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 436
+                            }
+                        }),
+                        _react3.default.createElement(_IconToggle2.default, {
+                            name: rightElement.menu.icon || 'more-vert',
+                            color: flattenRightElement.color,
+                            onPress: function onPress() {
+                                return _this.onMenuPressed(rightElement.menu.labels);
+                            },
+                            style: flattenRightElement,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 444
+                            }
+                        })
+                    ));
+                }
+
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.rightElementContainer,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 455
+                        }
+                    },
+                    content
+                );
+            };
+
+            _this.renderDivider = function () {
+                var divider = _this.props.divider;
+
+                if (!divider) {
+                    return null;
+                }
+
+                return _react3.default.createElement(_Divider2.default, {
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 467
+                    }
+                });
+            };
+
+            _this.renderContent = function (styles) {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.contentViewContainer,
+                        pointerEvents: _this.getPointerEvents(),
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 470
+                        }
+                    },
+                    _this.renderLeftElement(styles),
+                    _this.renderCenterElement(styles),
+                    _this.renderRightElement(styles)
+                );
+            };
+
+            _this.state = {
+                numberOfLines: getNumberOfLines(props)
+            };
+            return _this;
+        }
+
+        _createClass(ListItem, [{
+            key: "componentWillReceiveProps",
+            value: function componentWillReceiveProps(nextPros) {
+                this.setState({
+                    numberOfLines: getNumberOfLines(nextPros)
+                });
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _props = this.props,
+                    onPress = _props.onPress,
+                    onLongPress = _props.onLongPress,
+                    testID = _props.testID;
+                var styles = getStyles(this.props, this.context, this.state);
+
+                var content = _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.container,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 483
+                        }
+                    },
+                    this.renderContent(styles)
+                );
+
+                if (onPress || onLongPress) {
+                    content = _react3.default.createElement(
+                        _RippleFeedback2.default,
+                        {
+                            delayPressIn: 50,
+                            onPress: this.onListItemPressed,
+                            onLongPress: this.onListItemLongPressed,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 490
+                            }
+                        },
+                        content
+                    );
+                }
+
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        testID: testID,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 502
+                        }
+                    },
+                    content,
+                    this.renderDivider()
+                );
+            }
+        }]);
+
+        return ListItem;
+    }(_react2.PureComponent));
+
+    ListItem.propTypes = propTypes;
+    ListItem.defaultProps = defaultProps;
+    ListItem.contextTypes = contextTypes;
+    exports.default = ListItem;
+});

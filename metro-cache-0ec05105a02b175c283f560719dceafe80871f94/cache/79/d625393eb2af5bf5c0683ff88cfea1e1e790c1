@@ -1,0 +1,13 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var getPlatformElevation = function getPlatformElevation(elevation) {
+    return {
+      elevation: elevation
+    };
+  };
+
+  exports.default = getPlatformElevation;
+});

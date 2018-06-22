@@ -1,0 +1,245 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/neo/NodeJS/Rn/learn/app/screens/Main.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _nativeBase = _require(_dependencyMap[3], "native-base");
+
+    var _reactNativeMaterialUi = _require(_dependencyMap[4], "react-native-material-ui");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        App: {
+            displayName: "App"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/learn/app/screens/Main.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var App = _wrapComponent("App")(function (_Component) {
+        _inherits(App, _Component);
+
+        function App() {
+            var _ref;
+
+            var _temp, _this, _ret;
+
+            _classCallCheck(this, App);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+                data: [{
+                    id: 1,
+                    title: 'test'
+                }, {
+                    id: 2,
+                    title: 'test2'
+                }, {
+                    id: 3,
+                    title: 'test2'
+                }, {
+                    id: 4,
+                    title: 'test2'
+                }, {
+                    id: 5,
+                    title: 'test2'
+                }, {
+                    id: 6,
+                    title: 'test2'
+                }, {
+                    id: 7,
+                    title: 'test2'
+                }]
+            }, _this._keyExtractor = function (item, index) {
+                return item.id;
+            }, _this._onPressItem = function () {
+                alert('list onpress');
+            }, _this._renderItem = function (_ref2) {
+                var item = _ref2.item;
+                return _react3.default.createElement(
+                    _nativeBase.ListItem,
+                    {
+                        onPress: function onPress() {
+                            return alert('Manga Onpress');
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 51
+                        }
+                    },
+                    _react3.default.createElement(
+                        _nativeBase.Body,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 52
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 53
+                                }
+                            },
+                            "Kumar Pratik"
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                note: true,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 54
+                                }
+                            },
+                            "Doing what you like will always keep you happy . ."
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _nativeBase.Right,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 56
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                note: true,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 57
+                                }
+                            },
+                            "3:43 pm"
+                        )
+                    )
+                );
+            }, _temp), _possibleConstructorReturn(_this, _ret);
+        }
+
+        _createClass(App, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _nativeBase.Container,
+                    {
+                        style: style.main.container,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 64
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNativeMaterialUi.ThemeProvider,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 65
+                            }
+                        },
+                        _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
+                            centerElement: "PuManga.com",
+                            searchable: {
+                                autoFocus: true,
+                                placeholder: 'Search',
+                                onSubmitEditing: function onSubmitEditing() {
+                                    return alert('search presss');
+                                }
+                            },
+                            rightElement: {
+                                menu: {
+                                    icon: "more-vert",
+                                    labels: ["About"]
+                                }
+                            },
+                            style: {
+                                container: {
+                                    backgroundColor: '#568BF2'
+                                }
+                            },
+                            onRightElementPress: function onRightElementPress(label) {
+                                alert(JSON.stringify(label));
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 66
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _nativeBase.List,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 87
+                            }
+                        },
+                        _react3.default.createElement(_reactNative.FlatList, {
+                            refreshing: false,
+                            onRefresh: function onRefresh() {
+                                return alert('onPull');
+                            },
+                            data: this.state.data,
+                            keyExtractor: this._keyExtractor,
+                            renderItem: this._renderItem,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 88
+                            }
+                        })
+                    )
+                );
+            }
+        }]);
+
+        return App;
+    }(_react2.Component));
+
+    exports.default = App;
+    var style = {
+        main: _reactNative.StyleSheet.create({
+            container: {
+                backgroundColor: 'white'
+            }
+        })
+    };
+});
