@@ -2,28 +2,38 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.MangaDetails = exports.Main = exports.ChapterList = exports.Chapter = undefined;
+  exports.Downloads = exports.Browse = exports.Bookmarks = exports.MangaDetails = exports.ChapterList = exports.Chapter = undefined;
 
-  var _Chapter = _require(_dependencyMap[0], "./Chapter");
+  var _MangaDetails = _require(_dependencyMap[0], "./MangaDetails");
+
+  var _MangaDetails2 = _interopRequireDefault(_MangaDetails);
+
+  var _Chapter = _require(_dependencyMap[1], "./Chapter");
 
   var _Chapter2 = _interopRequireDefault(_Chapter);
 
-  var _ChapterList = _require(_dependencyMap[1], "./ChapterList");
+  var _ChapterList = _require(_dependencyMap[2], "./ChapterList");
 
   var _ChapterList2 = _interopRequireDefault(_ChapterList);
 
-  var _Main = _require(_dependencyMap[2], "./Main");
+  var _Bookmarks = _require(_dependencyMap[3], "./main/Bookmarks");
 
-  var _Main2 = _interopRequireDefault(_Main);
+  var _Bookmarks2 = _interopRequireDefault(_Bookmarks);
 
-  var _MangaDetails = _require(_dependencyMap[3], "./MangaDetails");
+  var _Browse = _require(_dependencyMap[4], "./main/Browse");
 
-  var _MangaDetails2 = _interopRequireDefault(_MangaDetails);
+  var _Browse2 = _interopRequireDefault(_Browse);
+
+  var _Downloads = _require(_dependencyMap[5], "./main/Downloads");
+
+  var _Downloads2 = _interopRequireDefault(_Downloads);
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   exports.Chapter = _Chapter2.default;
   exports.ChapterList = _ChapterList2.default;
-  exports.Main = _Main2.default;
   exports.MangaDetails = _MangaDetails2.default;
+  exports.Bookmarks = _Bookmarks2.default;
+  exports.Browse = _Browse2.default;
+  exports.Downloads = _Downloads2.default;
 });

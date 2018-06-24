@@ -1,0 +1,46 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.zoomInRight = exports.zoomInLeft = exports.zoomInUp = exports.zoomInDown = exports.zoomIn = undefined;
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+  function makeZoomInTranslation(translationType, pivotPoint) {
+    var modifier = Math.min(1, Math.max(-1, pivotPoint));
+    return {
+      easing: _reactNative.Easing.bezier(0.175, 0.885, 0.32, 1),
+      0: _defineProperty({
+        opacity: 0,
+        scale: 0.1
+      }, translationType, modifier * -1000),
+      0.6: _defineProperty({
+        opacity: 1,
+        scale: 0.457
+      }, translationType, pivotPoint),
+      1: _defineProperty({
+        scale: 1
+      }, translationType, 0)
+    };
+  }
+
+  var zoomIn = exports.zoomIn = {
+    from: {
+      opacity: 0,
+      scale: 0.3
+    },
+    0.5: {
+      opacity: 1
+    },
+    to: {
+      opacity: 1,
+      scale: 1
+    }
+  };
+  var zoomInDown = exports.zoomInDown = makeZoomInTranslation('translateY', 60);
+  var zoomInUp = exports.zoomInUp = makeZoomInTranslation('translateY', -60);
+  var zoomInLeft = exports.zoomInLeft = makeZoomInTranslation('translateX', 10);
+  var zoomInRight = exports.zoomInRight = makeZoomInTranslation('translateX', -10);
+});

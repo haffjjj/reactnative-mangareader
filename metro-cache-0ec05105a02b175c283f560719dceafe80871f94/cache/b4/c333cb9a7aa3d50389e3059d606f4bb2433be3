@@ -57,14 +57,52 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             key: "render",
             value: function render() {
                 return _react3.default.createElement(
-                    _reactNative.Text,
+                    _reactNative.View,
                     {
+                        style: {
+                            flex: 1,
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        },
                         __source: {
                             fileName: _jsxFileName,
                             lineNumber: 7
                         }
                     },
-                    "Hello, this from Chapter"
+                    _react3.default.createElement(_reactNative.View, {
+                        style: {
+                            width: 50,
+                            height: 50,
+                            backgroundColor: 'red'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 13
+                        }
+                    }),
+                    _react3.default.createElement(_reactNative.View, {
+                        style: {
+                            width: 50,
+                            height: 50,
+                            backgroundColor: 'green'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 14
+                        }
+                    }),
+                    _react3.default.createElement(_reactNative.View, {
+                        style: {
+                            width: 50,
+                            height: 50,
+                            backgroundColor: 'blue'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 15
+                        }
+                    })
                 );
             }
         }]);

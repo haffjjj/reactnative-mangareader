@@ -17,6 +17,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
     var _reactNative = _require(_dependencyMap[2], "react-native");
 
+    var _nativeBase = _require(_dependencyMap[3], "native-base");
+
+    var _reactNativeMaterialUi = _require(_dependencyMap[4], "react-native-material-ui");
+
+    var _reactNativeModal = _require(_dependencyMap[5], "react-native-modal");
+
+    var _reactNativeModal2 = _interopRequireDefault(_reactNativeModal);
+
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -48,23 +56,240 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         _inherits(App, _Component);
 
         function App() {
+            var _ref;
+
+            var _temp, _this, _ret;
+
             _classCallCheck(this, App);
 
-            return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+                data: [{
+                    id: 1
+                }],
+                modal: true
+            }, _this._keyExtractor = function (item, index) {
+                return item.id;
+            }, _this._onPressItem = function () {
+                alert('list onpress');
+            }, _this._renderItem = function (_ref2) {
+                var item = _ref2.item;
+                return _react3.default.createElement(
+                    _nativeBase.ListItem,
+                    {
+                        onPress: function onPress() {
+                            return alert('goto Chapter');
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 28
+                        }
+                    },
+                    _react3.default.createElement(
+                        _nativeBase.Body,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 29
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: {
+                                    color: '#121212'
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 30
+                                }
+                            },
+                            "Chapter #01"
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: {
+                                    color: '#878787',
+                                    fontSize: 12
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 33
+                                }
+                            },
+                            "Pertempuran Abadi"
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _nativeBase.Right,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 38
+                            }
+                        },
+                        _react3.default.createElement(
+                            _nativeBase.Button,
+                            {
+                                transparent: true,
+                                onPress: function onPress() {
+                                    return _this.handleModal(true);
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 39
+                                }
+                            },
+                            _react3.default.createElement(_nativeBase.Icon, {
+                                name: "ios-cloud-download-outline",
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 40
+                                }
+                            })
+                        )
+                    )
+                );
+            }, _temp), _possibleConstructorReturn(_this, _ret);
         }
 
         _createClass(App, [{
+            key: "handleModal",
+            value: function handleModal(boll) {
+                this.setState({
+                    modal: boll
+                });
+            }
+        }, {
             key: "render",
             value: function render() {
+                var _this2 = this;
+
                 return _react3.default.createElement(
-                    _reactNative.Text,
+                    _nativeBase.Container,
                     {
+                        style: {
+                            backgroundColor: 'white'
+                        },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 7
+                            lineNumber: 54
                         }
                     },
-                    "Hello, this from ChapterList"
+                    _react3.default.createElement(
+                        _reactNativeMaterialUi.ThemeProvider,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 57
+                            }
+                        },
+                        _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
+                            leftElement: "arrow-back",
+                            centerElement: "Chapter List",
+                            onLeftElementPress: function onLeftElementPress() {
+                                return _this2.props.navigation.goBack();
+                            },
+                            style: {
+                                container: {
+                                    backgroundColor: '#568BF2'
+                                }
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 58
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(
+                        _reactNativeModal2.default,
+                        {
+                            isVisible: this.state.modal,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 70
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: {
+                                    flex: 1
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 71
+                                }
+                            },
+                            _react3.default.createElement(
+                                _nativeBase.Button,
+                                {
+                                    onPress: function onPress() {
+                                        return _this2.handleModal(false);
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 72
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 73
+                                        }
+                                    },
+                                    "Close"
+                                )
+                            )
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: {
+                                backgroundColor: '#FAFAFA',
+                                padding: 6
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 78
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Text,
+                            {
+                                style: {
+                                    fontSize: 12,
+                                    textAlign: 'center',
+                                    color: '878787'
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 82
+                                }
+                            },
+                            "Nanatsu no Taizai"
+                        )
+                    ),
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        refreshing: false,
+                        onRefresh: function onRefresh() {
+                            return alert('onPull');
+                        },
+                        data: this.state.data,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 88
+                        }
+                    })
                 );
             }
         }]);

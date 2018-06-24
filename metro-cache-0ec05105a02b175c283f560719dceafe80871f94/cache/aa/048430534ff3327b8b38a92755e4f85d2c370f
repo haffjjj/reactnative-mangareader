@@ -2,29 +2,92 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
     });
+    var _jsxFileName = "/home/neo/NodeJS/Rn/learn/App.js";
 
-    var _reactNavigation = _require(_dependencyMap[0], "react-navigation");
+    var _react = _require(_dependencyMap[0], "react");
 
-    var _screens = _require(_dependencyMap[1], "./app/screens/");
+    var _react2 = _interopRequireDefault(_react);
+
+    var _nativeBase = _require(_dependencyMap[1], "native-base");
+
+    var _reactNavigation = _require(_dependencyMap[2], "react-navigation");
+
+    var _screens = _require(_dependencyMap[3], "./app/screens/");
 
     var Screens = _interopRequireWildcard(_screens);
 
     function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    var Main = (0, _reactNavigation.createBottomTabNavigator)({
+        tabMain: {
+            screen: Screens.Browse,
+            navigationOptions: {
+                title: 'Browse',
+                tabBarIcon: function tabBarIcon(_ref) {
+                    var focused = _ref.focused,
+                        tintColor = _ref.tintColor;
+                    return _react2.default.createElement(_nativeBase.Icon, {
+                        name: "ios-browsers-outline",
+                        style: {
+                            color: tintColor
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 13
+                        }
+                    });
+                }
+            }
+        },
+        tabBookmark: {
+            screen: Screens.Bookmarks,
+            navigationOptions: {
+                title: 'Bookmark',
+                tabBarIcon: function tabBarIcon(_ref2) {
+                    var focused = _ref2.focused,
+                        tintColor = _ref2.tintColor;
+                    return _react2.default.createElement(_nativeBase.Icon, {
+                        name: "ios-bookmark-outline",
+                        style: {
+                            color: tintColor
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 24
+                        }
+                    });
+                }
+            }
+        },
+        tabDownloads: {
+            screen: Screens.Downloads,
+            navigationOptions: {
+                title: 'Download',
+                tabBarIcon: function tabBarIcon(_ref3) {
+                    var focused = _ref3.focused,
+                        tintColor = _ref3.tintColor;
+                    return _react2.default.createElement(_nativeBase.Icon, {
+                        name: "ios-cloud-download-outline",
+                        style: {
+                            color: tintColor
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 35
+                        }
+                    });
+                }
+            }
+        }
+    });
     exports.default = (0, _reactNavigation.createStackNavigator)({
-        Main: {
-            screen: Screens.Main
-        },
-        Chapter: {
-            screen: Screens.Chapter
-        },
         ChapterList: {
             screen: Screens.ChapterList
-        },
-        MangaDetails: {
-            screen: Screens.MangaDetails
         }
     }, {
-        headerMode: 'none'
+        headerMode: 'none',
+        mode: 'card'
     });
 });
