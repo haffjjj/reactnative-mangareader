@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Text, FlatList, StyleSheet, Image,View, Dimensions} from 'react-native'
+import {Text, FlatList, StyleSheet, Image,View, Dimensions, StatusBar, AsyncStorage} from 'react-native'
 
 import {Container,ListItem, List, Body, Left, Button, Icon, Content} from 'native-base'
 
@@ -40,6 +40,36 @@ export default class App extends Component{
         ]
     }
 
+    componentDidMount(){
+        this._retrieveData();
+    }
+
+    // AsyncStorage
+
+    _retrieveData = async () => {
+        try {
+          const value = await AsyncStorage.getItem('mangaBookmarks');
+          if (value !== null) {
+            // We have data!!
+            alert(value);
+          }
+         } catch (error) {
+           // Error retrieving data
+         }
+      }
+
+    _storeData = async () => {
+        try {
+          await AsyncStorage.setItem('mangaBookmarks', 'I like to save it.');
+        } catch (error) {
+          // Error saving data
+        }
+    }
+
+    // endAsyncStorage
+    
+
+    // FlatList
     _keyExtractor = (item, index) => item.id;
 
     _onPressItem = () => {
@@ -94,6 +124,8 @@ export default class App extends Component{
                         alignSelf: 'center',
                         flex: 1
                     }}>
+
+                        {/* to bookmarks */}
                         <Icon style={{
                             color: 'red',
                             fontSize: 15
@@ -104,9 +136,12 @@ export default class App extends Component{
         </ListItem>
     )
 
+    // endFlatlist
+
     render(){
         return(
             <Container style={style.main.container}>
+                <StatusBar backgroundColor='#346ad3'/>
                 <ThemeProvider>
                     <Toolbar
                         centerElement="PuManga.com"

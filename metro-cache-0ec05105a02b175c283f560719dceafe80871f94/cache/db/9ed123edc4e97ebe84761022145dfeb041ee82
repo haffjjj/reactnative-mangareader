@@ -1,0 +1,264 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/neo/NodeJS/Rn/learn/node_modules/react-native-simple-dialogs/src/Dialog.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _propTypes = _require(_dependencyMap[3], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Dialog: {
+            displayName: "Dialog"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/learn/node_modules/react-native-simple-dialogs/src/Dialog.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var OS = _reactNative.Platform.OS;
+
+    var Dialog = _wrapComponent("Dialog")(function (_Component) {
+        _inherits(Dialog, _Component);
+
+        function Dialog() {
+            _classCallCheck(this, Dialog);
+
+            return _possibleConstructorReturn(this, (Dialog.__proto__ || Object.getPrototypeOf(Dialog)).apply(this, arguments));
+        }
+
+        _createClass(Dialog, [{
+            key: "renderContent",
+            value: function renderContent() {
+                var _props = this.props,
+                    children = _props.children,
+                    contentStyle = _props.contentStyle;
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: [{
+                            width: '100%',
+                            padding: 24,
+                            paddingTop: 20
+                        }, contentStyle],
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 44
+                        }
+                    },
+                    children
+                );
+            }
+        }, {
+            key: "renderTitle",
+            value: function renderTitle() {
+                var _props2 = this.props,
+                    title = _props2.title,
+                    titleStyle = _props2.titleStyle;
+                var textAlign = OS === 'ios' ? "center" : null;
+                if (title) return _react3.default.createElement(
+                    _reactNative.Text,
+                    {
+                        style: [{
+                            textAlign: textAlign,
+                            color: "#000000DD",
+                            fontSize: 20,
+                            margin: 24,
+                            marginBottom: 0
+                        }, titleStyle],
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 61
+                        }
+                    },
+                    title
+                );
+            }
+        }, {
+            key: "renderButtons",
+            value: function renderButtons() {
+                var _props3 = this.props,
+                    buttons = _props3.buttons,
+                    buttonsStyle = _props3.buttonsStyle;
+                var containerStyle = OS === 'ios' ? {} : {
+                    width: '100%',
+                    paddingLeft: 24,
+                    paddingRight: 8,
+                    paddingTop: 8,
+                    paddingBottom: 8
+                };
+                if (buttons) return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: [containerStyle, buttonsStyle],
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 88
+                        }
+                    },
+                    buttons
+                );
+            }
+        }, {
+            key: "_renderOutsideTouchable",
+            value: function _renderOutsideTouchable(onTouch) {
+                var view = _react3.default.createElement(_reactNative.View, {
+                    style: {
+                        flex: 1,
+                        width: '100%'
+                    },
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 95
+                    }
+                });
+
+                if (!onTouch) return view;
+                return _react3.default.createElement(
+                    _reactNative.TouchableWithoutFeedback,
+                    {
+                        onPress: onTouch,
+                        style: {
+                            flex: 1,
+                            width: '100%'
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 100
+                        }
+                    },
+                    view
+                );
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _props4 = this.props,
+                    dialogStyle = _props4.dialogStyle,
+                    visible = _props4.visible,
+                    animationType = _props4.animationType,
+                    onRequestClose = _props4.onRequestClose,
+                    onShow = _props4.onShow,
+                    onOrientationChange = _props4.onOrientationChange,
+                    onTouchOutside = _props4.onTouchOutside,
+                    overlayStyle = _props4.overlayStyle,
+                    supportedOrientations = _props4.supportedOrientations;
+                var dialogBackgroundColor = OS === 'ios' ? "#e8e8e8" : "#ffffff";
+                var dialogBorderRadius = OS === 'ios' ? 5 : 1;
+                return _react3.default.createElement(
+                    _reactNative.Modal,
+                    {
+                        animationType: animationType,
+                        transparent: true,
+                        visible: visible,
+                        onRequestClose: onRequestClose,
+                        onShow: onShow,
+                        onOrientationChange: onOrientationChange,
+                        supportedOrientations: supportedOrientations,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 116
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: [{
+                                flex: 1,
+                                backgroundColor: "#000000AA",
+                                padding: 24
+                            }, overlayStyle],
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 125
+                            }
+                        },
+                        this._renderOutsideTouchable(onTouchOutside),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: [{
+                                    backgroundColor: dialogBackgroundColor,
+                                    width: '100%',
+                                    shadowOpacity: 0.24,
+                                    borderRadius: dialogBorderRadius,
+                                    elevation: 4,
+                                    shadowOffset: {
+                                        height: 4,
+                                        width: 2
+                                    }
+                                }, dialogStyle],
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 133
+                                }
+                            },
+                            this.renderTitle(),
+                            this.renderContent(),
+                            this.renderButtons()
+                        ),
+                        this._renderOutsideTouchable(onTouchOutside)
+                    )
+                );
+            }
+        }]);
+
+        return Dialog;
+    }(_react2.Component));
+
+    Dialog.propTypes = {
+        dialogStyle: _reactNative.ViewPropTypes.style,
+        contentStyle: _reactNative.ViewPropTypes.style,
+        buttonsStyle: _reactNative.ViewPropTypes.style,
+        overlayStyle: _reactNative.ViewPropTypes.style,
+        buttons: _propTypes2.default.element,
+        visible: _propTypes2.default.bool,
+        animationType: _reactNative.Modal.propTypes.animationType,
+        onRequestClose: _propTypes2.default.func,
+        onShow: _propTypes2.default.func,
+        onOrientationChange: _reactNative.Modal.propTypes.onOrientationChange,
+        onTouchOutside: _propTypes2.default.func,
+        supportedOrientations: _reactNative.Modal.propTypes.supportedOrientations,
+        title: _propTypes2.default.string,
+        titleStyle: _reactNative.Text.propTypes.style
+    };
+    Dialog.defaultProps = {
+        visible: false,
+        onRequestClose: function onRequestClose() {
+            return null;
+        }
+    };
+    exports.default = Dialog;
+});

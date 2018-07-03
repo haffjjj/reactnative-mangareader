@@ -70,7 +70,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 data: [{
                     id: 1
                 }],
-                modal: true
+                modal: false
             }, _this._keyExtractor = function (item, index) {
                 return item.id;
             }, _this._onPressItem = function () {
@@ -81,7 +81,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     _nativeBase.ListItem,
                     {
                         onPress: function onPress() {
-                            return alert('goto Chapter');
+                            return _this.props.navigation.navigate('Chapter');
                         },
                         __source: {
                             fileName: _jsxFileName,
@@ -180,12 +180,19 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             lineNumber: 54
                         }
                     },
+                    _react3.default.createElement(_reactNative.StatusBar, {
+                        backgroundColor: "#346ad3",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 57
+                        }
+                    }),
                     _react3.default.createElement(
                         _reactNativeMaterialUi.ThemeProvider,
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 57
+                                lineNumber: 59
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -201,7 +208,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 58
+                                lineNumber: 60
                             }
                         })
                     ),
@@ -211,40 +218,115 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             isVisible: this.state.modal,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 70
+                                lineNumber: 72
                             }
                         },
                         _react3.default.createElement(
                             _reactNative.View,
                             {
                                 style: {
-                                    flex: 1
+                                    flex: 1,
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 71
+                                    lineNumber: 73
                                 }
                             },
                             _react3.default.createElement(
-                                _nativeBase.Button,
+                                _reactNative.View,
                                 {
-                                    onPress: function onPress() {
-                                        return _this2.handleModal(false);
+                                    style: {
+                                        width: 250,
+                                        backgroundColor: 'white',
+                                        borderRadius: 10,
+                                        padding: 10,
+                                        alignItems: 'center'
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 72
+                                        lineNumber: 79
                                     }
                                 },
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: {
+                                            alignSelf: 'flex-end'
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 89
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.TouchableNativeFeedback,
+                                        {
+                                            onPress: function onPress() {
+                                                return _this2.handleModal(false);
+                                            },
+                                            background: _reactNative.TouchableNativeFeedback.SelectableBackgroundBorderless(),
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 92
+                                            }
+                                        },
+                                        _react3.default.createElement(_nativeBase.Icon, {
+                                            style: {
+                                                fontSize: 20,
+                                                color: '#878787'
+                                            },
+                                            name: "close",
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 95
+                                            }
+                                        })
+                                    )
+                                ),
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: {
+                                            color: '#121212'
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 102
+                                        }
+                                    },
+                                    "Downloading Chapter #01"
+                                ),
                                 _react3.default.createElement(
                                     _reactNative.Text,
                                     {
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 73
+                                            lineNumber: 105
                                         }
                                     },
-                                    "Close"
+                                    "Please Wait.."
+                                ),
+                                _react3.default.createElement(_nativeBase.Spinner, {
+                                    color: "#568BF2",
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 106
+                                    }
+                                }),
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: {
+                                            marginTop: 10
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 107
+                                        }
+                                    },
+                                    "Downloading 1/20.."
                                 )
                             )
                         )
@@ -258,7 +340,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 78
+                                lineNumber: 118
                             }
                         },
                         _react3.default.createElement(
@@ -271,7 +353,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 82
+                                    lineNumber: 122
                                 }
                             },
                             "Nanatsu no Taizai"
@@ -287,7 +369,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         renderItem: this._renderItem,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 88
+                            lineNumber: 128
                         }
                     })
                 );

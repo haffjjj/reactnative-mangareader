@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Text, View, StyleSheet, Dimensions, Image} from 'react-native'
+import {Text, View, StyleSheet, Dimensions, Image,StatusBar} from 'react-native'
 import {Content, Container, Button} from 'native-base'
 
 import { Toolbar } from 'react-native-material-ui'
@@ -12,6 +12,7 @@ export default class App extends Component{
     render(){
         return(
             <Container style={style.main.container}>
+                <StatusBar backgroundColor='#346ad3'/>
                 <ThemeProvider>
                     <Toolbar
                         leftElement="arrow-back"

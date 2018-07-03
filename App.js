@@ -41,14 +41,20 @@ const Main = createBottomTabNavigator({
 })
 
 export default createStackNavigator({
-    // Chapter: {
-    //     screen: Main
-    // },
-    // MangaDetails: {
-    //     screen: Screens.MangaDetails
-    // },
+    Main: {
+        screen: Main
+    },
+    MangaDetails: {
+        screen: Screens.MangaDetails
+    },
     ChapterList: {
         screen: Screens.ChapterList
+    },
+    Chapter: {
+        screen: Screens.Chapter,
+        navigationOptions: {
+            header: null
+        }
     }
 }, {
     headerMode: 'none',

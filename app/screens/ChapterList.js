@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
-import {Text,View, FlatList} from 'react-native'
-import {Container, ListItem, Body, Right, Button, Icon} from 'native-base'
+import {Text,View, FlatList,TouchableNativeFeedback,StatusBar} from 'react-native'
+import {Container, ListItem, Body, Right, Button, Icon, Spinner} from 'native-base'
 
 import { Toolbar } from 'react-native-material-ui'
 import { ThemeProvider } from 'react-native-material-ui'
@@ -15,7 +15,7 @@ export default class App extends Component{
                 id: 1
             }
         ],
-        modal: true
+        modal: false
     }
 
     _keyExtractor = (item, index) => item.id;
@@ -25,7 +25,7 @@ export default class App extends Component{
     };
 
     _renderItem = ({item}) => (
-        <ListItem onPress={()=>alert('goto Chapter')}>
+        <ListItem onPress={()=>this.props.navigation.navigate('Chapter')}>
             <Body>
                 <Text style={{
                     color: '#121212'
@@ -36,7 +36,7 @@ export default class App extends Component{
                 }}>Pertempuran Abadi</Text>
             </Body>
             <Right>
-                <Button transparent  onPress={()=>this.handleModal(true)}>
+                <Button transparent onPress={()=>this.handleModal(true)}>
                     <Icon name='ios-cloud-download-outline' />
                 </Button>
             </Right>
@@ -54,6 +54,8 @@ export default class App extends Component{
             <Container style={{
                 backgroundColor: 'white'
             }}>
+                <StatusBar backgroundColor='#346ad3'/>
+
                 <ThemeProvider>
                     <Toolbar
                         leftElement="arrow-back"
@@ -68,10 +70,48 @@ export default class App extends Component{
                 </ThemeProvider>
 
                 <Modal isVisible={this.state.modal}>
-                    <View style={{ flex: 1 }}>
-                        <Button onPress={()=>this.handleModal(false)}>
-                            <Text>Close</Text>
-                        </Button>
+                    <View style={{
+                        flex: 1,
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+
+                        <View style={{
+                            width: 250,
+                            backgroundColor: 'white',
+                            borderRadius: 10,
+                            padding: 10,
+                            alignItems:'center'
+                        }}>
+
+                            
+
+                            <View style={{
+                                alignSelf: 'flex-end'
+                            }}>
+                                <TouchableNativeFeedback
+                                    onPress={()=>this.handleModal(false)}
+                                    background={TouchableNativeFeedback.SelectableBackgroundBorderless()}>
+                                    <Icon style={{
+                                        fontSize: 20,
+                                        color: '#878787'
+                                    }} name='close' />
+                                </TouchableNativeFeedback>
+                            </View>
+
+                            <Text style={{
+                                color: '#121212'
+                            }}>Downloading Chapter #01</Text>
+                            <Text>Please Wait..</Text>
+                            <Spinner color='#568BF2' />
+                            <Text style={{
+                                marginTop: 10
+                            }}>
+
+                            Downloading 1/20..
+                            </Text>    
+                        </View>
+
                     </View>
                 </Modal>
 

@@ -83,8 +83,20 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         }
     });
     exports.default = (0, _reactNavigation.createStackNavigator)({
+        Main: {
+            screen: Main
+        },
+        MangaDetails: {
+            screen: Screens.MangaDetails
+        },
         ChapterList: {
             screen: Screens.ChapterList
+        },
+        Chapter: {
+            screen: Screens.Chapter,
+            navigationOptions: {
+                header: null
+            }
         }
     }, {
         headerMode: 'none',

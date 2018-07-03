@@ -56,7 +56,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         _inherits(App, _Component);
 
         function App() {
-            var _ref;
+            var _ref,
+                _this2 = this;
 
             var _temp, _this, _ret;
 
@@ -89,6 +90,59 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     popularity: 335,
                     ranked: 3344
                 }]
+            }, _this._retrieveData = function _callee() {
+                var value;
+                return regeneratorRuntime.async(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                _context.next = 3;
+                                return regeneratorRuntime.awrap(_reactNative.AsyncStorage.getItem('mangaBookmarks'));
+
+                            case 3:
+                                value = _context.sent;
+
+                                if (value !== null) {
+                                    alert(value);
+                                }
+
+                                _context.next = 9;
+                                break;
+
+                            case 7:
+                                _context.prev = 7;
+                                _context.t0 = _context["catch"](0);
+
+                            case 9:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, _this2, [[0, 7]]);
+            }, _this._storeData = function _callee2() {
+                return regeneratorRuntime.async(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.prev = 0;
+                                _context2.next = 3;
+                                return regeneratorRuntime.awrap(_reactNative.AsyncStorage.setItem('mangaBookmarks', 'I like to save it.'));
+
+                            case 3:
+                                _context2.next = 7;
+                                break;
+
+                            case 5:
+                                _context2.prev = 5;
+                                _context2.t0 = _context2["catch"](0);
+
+                            case 7:
+                            case "end":
+                                return _context2.stop();
+                        }
+                    }
+                }, null, _this2, [[0, 5]]);
             }, _this._keyExtractor = function (item, index) {
                 return item.id;
             }, _this._onPressItem = function () {
@@ -103,7 +157,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 50
+                            lineNumber: 80
                         }
                     },
                     _react3.default.createElement(
@@ -111,7 +165,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 51
+                                lineNumber: 81
                             }
                         },
                         _react3.default.createElement(
@@ -123,7 +177,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 52
+                                    lineNumber: 82
                                 }
                             },
                             _react3.default.createElement(
@@ -135,7 +189,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 54
+                                        lineNumber: 84
                                     }
                                 },
                                 _react3.default.createElement(_reactNative.Image, {
@@ -149,7 +203,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 55
+                                        lineNumber: 85
                                     }
                                 }),
                                 _react3.default.createElement(
@@ -161,7 +215,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 63
+                                            lineNumber: 93
                                         }
                                     },
                                     _react3.default.createElement(
@@ -172,7 +226,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 67
+                                                lineNumber: 97
                                             }
                                         },
                                         item.title
@@ -189,7 +243,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 70
+                                                lineNumber: 100
                                             }
                                         },
                                         _react3.default.createElement(
@@ -202,7 +256,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 },
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 77
+                                                    lineNumber: 107
                                                 }
                                             },
                                             item.rating
@@ -217,7 +271,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 83
+                                                lineNumber: 113
                                             }
                                         },
                                         "Popularity #",
@@ -232,7 +286,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 87
+                                                lineNumber: 117
                                             }
                                         },
                                         "Ranked #",
@@ -250,7 +304,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 93
+                                        lineNumber: 123
                                     }
                                 },
                                 _react3.default.createElement(_nativeBase.Icon, {
@@ -261,7 +315,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     name: "ios-heart-outline",
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 97
+                                        lineNumber: 129
                                     }
                                 })
                             )
@@ -272,6 +326,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         }
 
         _createClass(App, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                this._retrieveData();
+            }
+        }, {
             key: "render",
             value: function render() {
                 return _react3.default.createElement(
@@ -280,15 +339,22 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         style: style.main.container,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 109
+                            lineNumber: 143
                         }
                     },
+                    _react3.default.createElement(_reactNative.StatusBar, {
+                        backgroundColor: "#346ad3",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 144
+                        }
+                    }),
                     _react3.default.createElement(
                         _reactNativeMaterialUi.ThemeProvider,
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 110
+                                lineNumber: 145
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -316,7 +382,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 111
+                                lineNumber: 146
                             }
                         })
                     ),
@@ -334,7 +400,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         renderItem: this._renderItem,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 132
+                            lineNumber: 167
                         }
                     })
                 );

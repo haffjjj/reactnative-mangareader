@@ -75,12 +75,19 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             lineNumber: 14
                         }
                     },
+                    _react3.default.createElement(_reactNative.StatusBar, {
+                        backgroundColor: "#346ad3",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 15
+                        }
+                    }),
                     _react3.default.createElement(
                         _reactNativeMaterialUi.ThemeProvider,
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 15
+                                lineNumber: 16
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -96,7 +103,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 16
+                                lineNumber: 17
                             }
                         })
                     ),
@@ -108,7 +115,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 27
+                                lineNumber: 28
                             }
                         },
                         _react3.default.createElement(
@@ -121,7 +128,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 31
+                                    lineNumber: 32
                                 }
                             },
                             _react3.default.createElement(
@@ -135,7 +142,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 37
+                                        lineNumber: 38
                                     }
                                 },
                                 _react3.default.createElement(_reactNative.Image, {
@@ -149,7 +156,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 44
+                                        lineNumber: 45
                                     }
                                 })
                             ),
@@ -161,7 +168,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 55
+                                        lineNumber: 56
                                     }
                                 },
                                 _react3.default.createElement(
@@ -174,7 +181,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 58
+                                            lineNumber: 59
                                         }
                                     },
                                     "Name"
@@ -188,7 +195,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 65
+                                            lineNumber: 66
                                         }
                                     },
                                     "Nanatsu No Taizai"
@@ -201,7 +208,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 70
+                                            lineNumber: 71
                                         }
                                     },
                                     _react3.default.createElement(
@@ -212,7 +219,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 73
+                                                lineNumber: 74
                                             }
                                         },
                                         _react3.default.createElement(
@@ -224,7 +231,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 },
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 77
+                                                    lineNumber: 78
                                                 }
                                             },
                                             "Ranked #23"
@@ -238,7 +245,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 83
+                                                lineNumber: 84
                                             }
                                         },
                                         _react3.default.createElement(
@@ -250,7 +257,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 },
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 86
+                                                    lineNumber: 87
                                                 }
                                             },
                                             "Popularity #23"
@@ -269,7 +276,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 92
+                                            lineNumber: 93
                                         }
                                     },
                                     _react3.default.createElement(
@@ -282,7 +289,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 99
+                                                lineNumber: 100
                                             }
                                         },
                                         "6.9"
@@ -296,7 +303,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 105
+                                            lineNumber: 106
                                         }
                                     },
                                     _react3.default.createElement(
@@ -307,7 +314,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 108
+                                                lineNumber: 109
                                             }
                                         },
                                         _react3.default.createElement(
@@ -319,7 +326,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 },
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 112
+                                                    lineNumber: 113
                                                 }
                                             },
                                             "Source"
@@ -333,7 +340,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 },
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 116
+                                                    lineNumber: 117
                                                 }
                                             },
                                             "Myanimelist"
@@ -347,7 +354,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 122
+                                                lineNumber: 123
                                             }
                                         },
                                         _react3.default.createElement(
@@ -359,7 +366,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 },
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 125
+                                                    lineNumber: 126
                                                 }
                                             },
                                             "Last Update"
@@ -373,7 +380,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 },
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 129
+                                                    lineNumber: 130
                                                 }
                                             },
                                             "17 April"
@@ -391,7 +398,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 140
+                                    lineNumber: 141
                                 }
                             },
                             _react3.default.createElement(
@@ -402,7 +409,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 145
+                                        lineNumber: 146
                                     }
                                 },
                                 _react3.default.createElement(
@@ -415,7 +422,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 148
+                                            lineNumber: 149
                                         }
                                     },
                                     _react3.default.createElement(_reactNative.View, {
@@ -427,7 +434,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 153
+                                            lineNumber: 154
                                         }
                                     }),
                                     _react3.default.createElement(
@@ -439,7 +446,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 159
+                                                lineNumber: 160
                                             }
                                         },
                                         "Synopsis"
@@ -453,7 +460,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 164
+                                            lineNumber: 165
                                         }
                                     },
                                     "The \"Seven Deadly Sins,\" a group of evil knights who conspired to overthrow the kingdom of Britannia, were said to have been eradicated by the Holy Knights, although some claim that they still live. Ten years later, the Holy Knights have staged a Coup d'\xE9tat and captured the king, becoming the new, tyrannical rulers of the kingdom. Elizabeth, the king's third daughter, sets out on a journey to find the \"Seven Deadly Sins,\" and to enlist their help in taking back the kingdom. The \"Seven Deadly Sins,\" a group of evil knights who conspired to overthrow the kingdom of Britannia, were said to have been eradicated by the Holy Knights, although some claim that they still live. Ten years later, the Holy Knights have staged a Coup d'\xE9tat and captured the king, becoming the new, tyrannical rulers of the kingdom. Elizabeth, the king's third daughter, sets out on a journey to find the \"Seven Deadly Sins,\" and to enlist their help in taking back the kingdom."
@@ -471,7 +478,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 171
+                                        lineNumber: 172
                                     }
                                 },
                                 _react3.default.createElement(
@@ -482,7 +489,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 174
+                                            lineNumber: 175
                                         }
                                     },
                                     "Read now"

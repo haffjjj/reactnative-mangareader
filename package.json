@@ -11,8 +11,14 @@
     "react": "16.3.1",
     "react-native": "0.55.4",
     "react-native-fetch-blob": "^0.10.8",
+    "react-native-image-pan-zoom": "^2.1.5",
+    "react-native-image-zoom-viewer": "^2.2.6",
     "react-native-material-ui": "^1.22.4",
     "react-native-modal": "^6.1.0",
+    "react-native-photo-view": "^1.5.2",
+    "react-native-simple-dialogs": "^0.3.1",
+    "react-native-swipe-gestures": "^1.0.2",
+    "react-native-swiper": "^1.5.13",
     "react-navigation": "^2.4.1"
   },
   "devDependencies": {

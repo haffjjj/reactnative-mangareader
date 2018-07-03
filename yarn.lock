@@ -4360,6 +4360,16 @@ react-native-fetch-blob@^0.10.8:
     base-64 "0.1.0"
     glob "7.0.6"
 
+react-native-image-pan-zoom@^2.1.2, react-native-image-pan-zoom@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-image-pan-zoom/-/react-native-image-pan-zoom-2.1.5.tgz#d80beab79e8e5a1fe67106ccb617e20b03885ba3"
+
+react-native-image-zoom-viewer@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/react-native-image-zoom-viewer/-/react-native-image-zoom-viewer-2.2.6.tgz#5853de2efc9ec37c0408a50a5c9009adb686fce6"
+  dependencies:
+    react-native-image-pan-zoom "^2.1.2"
+
 react-native-iphone-x-helper@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.0.3.tgz#7a2f1e0574e899a0f1d426e6167fd98990083214"
@@ -4391,6 +4401,12 @@ react-native-modal@^6.1.0:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"
 
+react-native-photo-view@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/react-native-photo-view/-/react-native-photo-view-1.5.2.tgz#5d7f406ed5532a5a8a78c8ef8f40e81f688de1e2"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-safe-area-view@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.7.0.tgz#38f5ab9368d6ef9e5d18ab64212938af3ec39421"
@@ -4402,6 +4418,20 @@ react-native-safe-area-view@^0.8.0:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.8.0.tgz#22d78cb8e8658d04a10cd53c1546e0bc86cb7aea"
   dependencies:
     hoist-non-react-statics "^2.3.1"
+
+react-native-simple-dialogs@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-simple-dialogs/-/react-native-simple-dialogs-0.3.1.tgz#8b7cee294c6c2b140f3fd3c75f87b178e229936e"
+
+react-native-swipe-gestures@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-swipe-gestures/-/react-native-swipe-gestures-1.0.2.tgz#914e1a72a94bc55b322b4622a01103ab879296dd"
+
+react-native-swiper@^1.5.13:
+  version "1.5.13"
+  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.13.tgz#fa695cd4ab77b9a9df2d2bfee38ea7274dd07a2e"
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-tab-view@^0.0.77:
   version "0.0.77"
