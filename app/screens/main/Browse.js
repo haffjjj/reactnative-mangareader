@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Text, FlatList, StyleSheet, Image,View, Dimensions, StatusBar, AsyncStorage} from 'react-native'
 
-import {Container,ListItem, List, Body, Left, Button, Icon, Content} from 'native-base'
+import {Container,ListItem, Body, Button, Icon, Toast} from 'native-base'
 
 import { Toolbar } from 'react-native-material-ui'
 import { ThemeProvider } from 'react-native-material-ui'
@@ -37,30 +37,35 @@ export default class App extends Component{
                 popularity: 335,
                 ranked: 3344,
             }
-        ]
+        ],
+        bookmarks: []
     }
 
     componentDidMount(){
-        this._retrieveData();
+        this._retrieveData()
     }
 
     // AsyncStorage
 
     _retrieveData = async () => {
         try {
-          const value = await AsyncStorage.getItem('mangaBookmarks');
+          const value = await AsyncStorage.getItem('mangaBookmarks')
           if (value !== null) {
             // We have data!!
-            alert(value);
+            this.setState({
+                bookmarks: JSON.parse(value)
+            })
+
+            // alert(value)
           }
          } catch (error) {
            // Error retrieving data
          }
       }
 
-    _storeData = async () => {
+    _storeData = async (bookmarksData) => {
         try {
-          await AsyncStorage.setItem('mangaBookmarks', 'I like to save it.');
+          await AsyncStorage.setItem('mangaBookmarks', bookmarksData)
         } catch (error) {
           // Error saving data
         }
@@ -68,13 +73,25 @@ export default class App extends Component{
 
     // endAsyncStorage
     
-
-    // FlatList
-    _keyExtractor = (item, index) => item.id;
+    _keyExtractor = (item, index) => item.id
 
     _onPressItem = () => {
         alert('list onpress')
-    };
+    }
+    
+    handleBookmark = (id)=>{
+        let bookmarks = this.state.bookmarks
+
+        if(bookmarks.includes(id)){
+            bookmarks = bookmarks.filter(item => item !== id)
+        }
+        else{
+            bookmarks.push(id)
+        }
+
+        this.setState({bookmarks})        
+        this._storeData(JSON.stringify(bookmarks))
+    }
 
     _renderItem = ({item}) => (
         <ListItem onPress={()=>this.props.navigation.navigate('MangaDetails')}>
@@ -120,16 +137,15 @@ export default class App extends Component{
                             }}>Ranked #{item.ranked}</Text>
                         </View>
                     </View>
-                    <Button transparent style={{
+                    <Button transparent onPress={()=>this.handleBookmark(item.id)} style={{
                         alignSelf: 'center',
                         flex: 1
                     }}>
-
-                        {/* to bookmarks */}
+                    
                         <Icon style={{
                             color: 'red',
                             fontSize: 15
-                        }} name='ios-heart-outline' />
+                        }}  name={this.state.bookmarks.includes(item.id) == true ? 'ios-heart' : 'ios-heart-outline'} />
                     </Button>
                 </View>
             </Body>
@@ -164,16 +180,17 @@ export default class App extends Component{
                         onRightElementPress={ (label) => { alert(JSON.stringify(label)) }}
                     />
                 </ThemeProvider>
-                        <FlatList
-                            refreshing = {false}
-                            onRefresh = {()=>alert('onPull')}
-                            onEndReachedThreshold = {0.1}
-                            onEndReached = {() =>alert('end reach')}
-                            data={this.state.data}
-                            // extraData={this.state.data}
-                            keyExtractor={this._keyExtractor}
-                            renderItem={this._renderItem}
-                        />
+                {/* <Text>{JSON.stringify(this.state.bookmarks)}</Text> */}
+                <FlatList
+                    refreshing = {false}
+                    onRefresh = {()=>alert('onPull')}
+                    onEndReachedThreshold = {0.1}
+                    onEndReached = {() =>alert('end reach')}
+                    data={this.state.data}
+                    // extraData={this.state.data}
+                    keyExtractor={this._keyExtractor}
+                    renderItem={this._renderItem}
+                />
             </Container>
         )
     }

@@ -17,6 +17,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
     var _reactNative = _require(_dependencyMap[2], "react-native");
 
+    var _nativeBase = _require(_dependencyMap[3], "native-base");
+
+    var _reactNativeMaterialUi = _require(_dependencyMap[4], "react-native-material-ui");
+
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44,27 +48,374 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         };
     }
 
+    var screenWidth = _reactNative.Dimensions.get('window').width;
+
+    var imgResize = screenWidth / 65.25;
+
     var App = _wrapComponent("App")(function (_Component) {
         _inherits(App, _Component);
 
         function App() {
+            var _ref,
+                _this2 = this;
+
+            var _temp, _this, _ret;
+
             _classCallCheck(this, App);
 
-            return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+                data: [{
+                    id: 1,
+                    img: 'https://myanimelist.cdn-dena.com/images/manga/2/153111.jpg',
+                    title: 'Nanatsu no Taizai',
+                    rating: 8.5,
+                    popularity: 45,
+                    ranked: 34
+                }, {
+                    id: 2,
+                    img: 'https://myanimelist.cdn-dena.com/images/anime/4/78280.jpg',
+                    title: 'Boruto: Naruto the Movie',
+                    rating: 6,
+                    popularity: 335,
+                    ranked: 3344
+                }, {
+                    id: 3,
+                    img: 'https://myanimelist.cdn-dena.com/images/anime/4/78280.jpg',
+                    title: 'Boruto: Naruto the Movie',
+                    rating: 6,
+                    popularity: 335,
+                    ranked: 3344
+                }],
+                bookmarks: []
+            }, _this._retrieveData = function _callee() {
+                var value;
+                return regeneratorRuntime.async(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                _context.next = 3;
+                                return regeneratorRuntime.awrap(_reactNative.AsyncStorage.getItem('mangaBookmarks'));
+
+                            case 3:
+                                value = _context.sent;
+
+                                if (value !== null) {
+                                    _this.setState({
+                                        bookmarks: JSON.parse(value)
+                                    });
+                                }
+
+                                _context.next = 9;
+                                break;
+
+                            case 7:
+                                _context.prev = 7;
+                                _context.t0 = _context["catch"](0);
+
+                            case 9:
+                            case "end":
+                                return _context.stop();
+                        }
+                    }
+                }, null, _this2, [[0, 7]]);
+            }, _this._storeData = function _callee2(bookmarksData) {
+                return regeneratorRuntime.async(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.prev = 0;
+                                _context2.next = 3;
+                                return regeneratorRuntime.awrap(_reactNative.AsyncStorage.setItem('mangaBookmarks', bookmarksData));
+
+                            case 3:
+                                _context2.next = 7;
+                                break;
+
+                            case 5:
+                                _context2.prev = 5;
+                                _context2.t0 = _context2["catch"](0);
+
+                            case 7:
+                            case "end":
+                                return _context2.stop();
+                        }
+                    }
+                }, null, _this2, [[0, 5]]);
+            }, _this._keyExtractor = function (item, index) {
+                return item.id;
+            }, _this._onPressItem = function () {
+                alert('list onpress');
+            }, _this.handleBookmark = function (id) {
+                var bookmarks = _this.state.bookmarks;
+
+                if (bookmarks.includes(id)) {
+                    bookmarks = bookmarks.filter(function (item) {
+                        return item !== id;
+                    });
+                } else {
+                    bookmarks.push(id);
+                }
+
+                _this.setState({
+                    bookmarks: bookmarks
+                });
+
+                _this._storeData(JSON.stringify(bookmarks));
+            }, _this._renderItem = function (_ref2) {
+                var item = _ref2.item;
+                return _react3.default.createElement(
+                    _nativeBase.ListItem,
+                    {
+                        onPress: function onPress() {
+                            return _this.props.navigation.navigate('MangaDetails');
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 97
+                        }
+                    },
+                    _react3.default.createElement(
+                        _nativeBase.Body,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 98
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: {
+                                    flex: 1,
+                                    flexDirection: 'row'
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 99
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: {
+                                        flex: 5,
+                                        flexDirection: 'row'
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 101
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.Image, {
+                                    style: {
+                                        width: imgResize * 20,
+                                        height: imgResize * 30,
+                                        borderRadius: 8
+                                    },
+                                    source: {
+                                        uri: item.img
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 102
+                                    }
+                                }),
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: {
+                                            paddingLeft: 5,
+                                            paddingRight: 5
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 110
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                color: '#121212'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 114
+                                            }
+                                        },
+                                        item.title
+                                    ),
+                                    _react3.default.createElement(
+                                        _reactNative.View,
+                                        {
+                                            style: {
+                                                backgroundColor: '#568BF2',
+                                                borderRadius: 50,
+                                                width: 30,
+                                                marginTop: 2,
+                                                marginBottom: 10
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 117
+                                            }
+                                        },
+                                        _react3.default.createElement(
+                                            _reactNative.Text,
+                                            {
+                                                style: {
+                                                    textAlign: 'center',
+                                                    color: 'white',
+                                                    fontSize: 11
+                                                },
+                                                __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 124
+                                                }
+                                            },
+                                            item.rating
+                                        )
+                                    ),
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                fontSize: 12,
+                                                color: '#878787'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 130
+                                            }
+                                        },
+                                        "Popularity #",
+                                        item.popularity
+                                    ),
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                fontSize: 12,
+                                                color: '#878787'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 134
+                                            }
+                                        },
+                                        "Ranked #",
+                                        item.ranked
+                                    )
+                                )
+                            ),
+                            _react3.default.createElement(
+                                _nativeBase.Button,
+                                {
+                                    transparent: true,
+                                    onPress: function onPress() {
+                                        return _this.handleBookmark(item.id);
+                                    },
+                                    style: {
+                                        alignSelf: 'center',
+                                        flex: 1
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 140
+                                    }
+                                },
+                                _react3.default.createElement(_nativeBase.Icon, {
+                                    style: {
+                                        color: 'red',
+                                        fontSize: 15
+                                    },
+                                    name: _this.state.bookmarks.includes(item.id) == true ? 'ios-heart' : 'ios-heart-outline',
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 145
+                                    }
+                                })
+                            )
+                        )
+                    )
+                );
+            }, _temp), _possibleConstructorReturn(_this, _ret);
         }
 
         _createClass(App, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                this._retrieveData();
+            }
+        }, {
             key: "render",
             value: function render() {
                 return _react3.default.createElement(
-                    _reactNative.Text,
+                    _nativeBase.Container,
                     {
+                        style: style.main.container,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 7
+                            lineNumber: 159
                         }
                     },
-                    "Hello, this from Bookmarks"
+                    _react3.default.createElement(_reactNative.StatusBar, {
+                        backgroundColor: "#346ad3",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 160
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNativeMaterialUi.ThemeProvider,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 161
+                            }
+                        },
+                        _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
+                            centerElement: "Bookmarks",
+                            searchable: {
+                                autoFocus: true,
+                                placeholder: 'Search',
+                                onSubmitEditing: function onSubmitEditing() {
+                                    return alert('search presss');
+                                }
+                            },
+                            style: {
+                                container: {
+                                    backgroundColor: '#568BF2'
+                                }
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 162
+                            }
+                        })
+                    ),
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        refreshing: false,
+                        onRefresh: function onRefresh() {
+                            return alert('onPull');
+                        },
+                        onEndReachedThreshold: 0.1,
+                        onEndReached: function onEndReached() {
+                            return alert('end reach');
+                        },
+                        data: this.state.data,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 177
+                        }
+                    })
                 );
             }
         }]);
@@ -73,4 +424,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     }(_react2.Component));
 
     exports.default = App;
+    var style = {
+        main: _reactNative.StyleSheet.create({
+            container: {
+                backgroundColor: 'white'
+            }
+        })
+    };
 });

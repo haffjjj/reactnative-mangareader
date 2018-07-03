@@ -101,7 +101,7 @@ export default class App extends Component{
 
                             <Text style={{
                                 color: '#121212'
-                            }}>Downloading Chapter #01</Text>
+                            }}>Coming soon bosqu</Text>
                             <Text>Please Wait..</Text>
                             <Spinner color='#568BF2' />
                             <Text style={{

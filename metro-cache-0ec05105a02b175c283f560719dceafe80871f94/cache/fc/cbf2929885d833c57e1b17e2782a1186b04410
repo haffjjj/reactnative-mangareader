@@ -296,7 +296,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             lineNumber: 102
                                         }
                                     },
-                                    "Downloading Chapter #01"
+                                    "Coming soon bosqu"
                                 ),
                                 _react3.default.createElement(
                                     _reactNative.Text,

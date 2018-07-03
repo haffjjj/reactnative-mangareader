@@ -64,7 +64,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             lineNumber: 7
                         }
                     },
-                    "Hello, this from Downloads"
+                    "Coming soon bosqu"
                 );
             }
         }]);
