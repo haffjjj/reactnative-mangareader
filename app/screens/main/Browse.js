@@ -1,10 +1,12 @@
 import React,{Component} from 'react'
 import {Text, FlatList, StyleSheet, Image,View, Dimensions, StatusBar, AsyncStorage} from 'react-native'
 
-import {Container,ListItem, Body, Button, Icon, Toast} from 'native-base'
+import {Container,ListItem, Body, Button, Icon, Spinner} from 'native-base'
 
 import { Toolbar } from 'react-native-material-ui'
 import { ThemeProvider } from 'react-native-material-ui'
+
+import axios from 'axios'
 
 const screenWidth = Dimensions.get('window').width
 const imgResize = screenWidth/65.25
@@ -12,40 +14,95 @@ const imgResize = screenWidth/65.25
 export default class App extends Component{
 
     state = {
-        data: [
-            {
-                id: 1,
-                img: 'https://myanimelist.cdn-dena.com/images/manga/2/153111.jpg',
-                title: 'Nanatsu no Taizai',
-                rating: 8.5,
-                popularity: 45,
-                ranked: 34,
-            },
-            {
-                id: 2,
-                img: 'https://myanimelist.cdn-dena.com/images/anime/4/78280.jpg',
-                title: 'Boruto: Naruto the Movie',
-                rating: 6,
-                popularity: 335,
-                ranked: 3344,
-            },
-            {
-                id: 3,
-                img: 'https://myanimelist.cdn-dena.com/images/anime/4/78280.jpg',
-                title: 'Boruto: Naruto the Movie',
-                rating: 6,
-                popularity: 335,
-                ranked: 3344,
-            }
-        ],
-        bookmarks: []
+        data: [],
+        bookmarks: [],
+        startPage: 0,
+        refresh: false
     }
 
     componentDidMount(){
         this._retrieveData()
+
+        this.setState({
+            refresh: true
+        })
+        this.onLoad(this.state.startPage);
     }
 
-    // AsyncStorage
+    onLoad = (startPage, reset = false)=>{
+        axios({
+            method: 'POST',
+            // url: 'http://192.168.43.142/api/get_mangas.php',
+            url: 'http://192.168.56.1/api/get_mangas.php',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: {
+              start: startPage,
+              rows: 5,
+              key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
+            }
+        }).then((result)=>{
+            this.setState({
+                refresh:false
+            })
+
+            if(result.data.result == true){
+                if(reset == false){
+                    let data = this.state.data
+                    data = data.concat(result.data.data)
+
+                    this.setState({
+                        data,
+                        startPage: this.state.startPage + 5,
+                        refresh: false
+                    })
+                }
+                else{
+                    this.setState({
+                        data: result.data.data,
+                        startPage: 0,
+                        refresh: false
+                    })
+                }
+            }
+            else{
+                alert('Terjadi Kesalahan :(')
+            }
+
+        }).catch(()=>{
+            alert('Terjadi Kesalahan :(')
+        })
+    }
+
+    handleBookmark = (id)=>{
+        let bookmarks = this.state.bookmarks
+
+        if(bookmarks.includes(id)){
+            bookmarks = bookmarks.filter(item => item !== id)
+        }
+        else{
+            bookmarks.push(id)
+        }
+
+        this.setState({bookmarks})        
+        this._storeData(JSON.stringify(bookmarks))
+    }
+
+    handleOnPull = ()=>{
+        this.setState({
+            refresh: true
+        })
+
+        this.onLoad(0,true)
+    }
+
+    handleOnReach = ()=>{
+        this.setState({
+            refresh:true
+        })
+        this.onLoad(this.state.startPage)
+    }
+
+    // AsyncStoragerr
 
     _retrieveData = async () => {
         try {
@@ -79,19 +136,7 @@ export default class App extends Component{
         alert('list onpress')
     }
     
-    handleBookmark = (id)=>{
-        let bookmarks = this.state.bookmarks
 
-        if(bookmarks.includes(id)){
-            bookmarks = bookmarks.filter(item => item !== id)
-        }
-        else{
-            bookmarks.push(id)
-        }
-
-        this.setState({bookmarks})        
-        this._storeData(JSON.stringify(bookmarks))
-    }
 
     _renderItem = ({item}) => (
         <ListItem onPress={()=>this.props.navigation.navigate('MangaDetails')}>
@@ -117,7 +162,7 @@ export default class App extends Component{
                             <View  style={{
                                 backgroundColor: '#568BF2',
                                 borderRadius: 50,
-                                width: 30,
+                                width: 35,
                                 marginTop: 2,
                                 marginBottom: 10
                             }}>
@@ -125,7 +170,7 @@ export default class App extends Component{
                                     textAlign: 'center',
                                     color: 'white',
                                     fontSize: 11,
-                                }}>{item.rating}</Text>
+                                }}>{item.score}</Text>
                             </View>
                             <Text style={{
                                 fontSize: 12,
@@ -180,12 +225,12 @@ export default class App extends Component{
                         onRightElementPress={ (label) => { alert(JSON.stringify(label)) }}
                     />
                 </ThemeProvider>
-                {/* <Text>{JSON.stringify(this.state.bookmarks)}</Text> */}
+                {/* <Text>{JSON.stringify(this.state.data)}</Text> */}
                 <FlatList
-                    refreshing = {false}
-                    onRefresh = {()=>alert('onPull')}
+                    refreshing = {this.state.refresh}
+                    onRefresh = {this.handleOnPull}
                     onEndReachedThreshold = {0.1}
-                    onEndReached = {() =>alert('end reach')}
+                    onEndReached = {this.handleOnReach}
                     data={this.state.data}
                     // extraData={this.state.data}
                     keyExtractor={this._keyExtractor}

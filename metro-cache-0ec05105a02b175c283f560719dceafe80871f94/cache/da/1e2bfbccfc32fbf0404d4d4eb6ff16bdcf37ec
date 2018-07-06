@@ -21,6 +21,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
     var _reactNativeMaterialUi = _require(_dependencyMap[4], "react-native-material-ui");
 
+    var _axios = _require(_dependencyMap[5], "axios");
+
+    var _axios2 = _interopRequireDefault(_axios);
+
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -68,29 +72,79 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             }
 
             return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-                data: [{
-                    id: 1,
-                    img: 'https://myanimelist.cdn-dena.com/images/manga/2/153111.jpg',
-                    title: 'Nanatsu no Taizai',
-                    rating: 8.5,
-                    popularity: 45,
-                    ranked: 34
-                }, {
-                    id: 2,
-                    img: 'https://myanimelist.cdn-dena.com/images/anime/4/78280.jpg',
-                    title: 'Boruto: Naruto the Movie',
-                    rating: 6,
-                    popularity: 335,
-                    ranked: 3344
-                }, {
-                    id: 3,
-                    img: 'https://myanimelist.cdn-dena.com/images/anime/4/78280.jpg',
-                    title: 'Boruto: Naruto the Movie',
-                    rating: 6,
-                    popularity: 335,
-                    ranked: 3344
-                }],
-                bookmarks: []
+                data: [],
+                bookmarks: [],
+                startPage: 0,
+                refresh: false
+            }, _this.onLoad = function (startPage) {
+                var reset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+                (0, _axios2.default)({
+                    method: 'POST',
+                    url: 'http://192.168.43.142/api/get_mangas.php',
+                    headers: {
+                        'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    data: {
+                        start: startPage,
+                        rows: 5,
+                        key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
+                    }
+                }).then(function (result) {
+                    _this.setState({
+                        refresh: false
+                    });
+
+                    if (result.data.result == true) {
+                        if (reset == false) {
+                            var data = _this.state.data;
+                            data = data.concat(result.data.data);
+
+                            _this.setState({
+                                data: data,
+                                startPage: _this.state.startPage + 5,
+                                refresh: false
+                            });
+                        } else {
+                            _this.setState({
+                                data: result.data.data,
+                                startPage: 0,
+                                refresh: false
+                            });
+                        }
+                    } else {
+                        alert('Terjadi Kesalahan :(');
+                    }
+                }).catch(function () {
+                    alert('Terjadi Kesalahn :(');
+                });
+            }, _this.handleBookmark = function (id) {
+                var bookmarks = _this.state.bookmarks;
+
+                if (bookmarks.includes(id)) {
+                    bookmarks = bookmarks.filter(function (item) {
+                        return item !== id;
+                    });
+                } else {
+                    bookmarks.push(id);
+                }
+
+                _this.setState({
+                    bookmarks: bookmarks
+                });
+
+                _this._storeData(JSON.stringify(bookmarks));
+            }, _this.handleOnPull = function () {
+                _this.setState({
+                    refresh: true
+                });
+
+                _this.onLoad(0, true);
+            }, _this.handleOnReach = function () {
+                _this.setState({
+                    refresh: true
+                });
+
+                _this.onLoad(_this.state.startPage);
             }, _this._retrieveData = function _callee() {
                 var value;
                 return regeneratorRuntime.async(function _callee$(_context) {
@@ -150,22 +204,6 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 return item.id;
             }, _this._onPressItem = function () {
                 alert('list onpress');
-            }, _this.handleBookmark = function (id) {
-                var bookmarks = _this.state.bookmarks;
-
-                if (bookmarks.includes(id)) {
-                    bookmarks = bookmarks.filter(function (item) {
-                        return item !== id;
-                    });
-                } else {
-                    bookmarks.push(id);
-                }
-
-                _this.setState({
-                    bookmarks: bookmarks
-                });
-
-                _this._storeData(JSON.stringify(bookmarks));
             }, _this._renderItem = function (_ref2) {
                 var item = _ref2.item;
                 return _react3.default.createElement(
@@ -176,7 +214,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 97
+                            lineNumber: 142
                         }
                     },
                     _react3.default.createElement(
@@ -184,7 +222,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 98
+                                lineNumber: 143
                             }
                         },
                         _react3.default.createElement(
@@ -196,7 +234,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 99
+                                    lineNumber: 144
                                 }
                             },
                             _react3.default.createElement(
@@ -208,7 +246,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 101
+                                        lineNumber: 146
                                     }
                                 },
                                 _react3.default.createElement(_reactNative.Image, {
@@ -222,7 +260,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 102
+                                        lineNumber: 147
                                     }
                                 }),
                                 _react3.default.createElement(
@@ -234,7 +272,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 110
+                                            lineNumber: 155
                                         }
                                     },
                                     _react3.default.createElement(
@@ -245,7 +283,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 114
+                                                lineNumber: 159
                                             }
                                         },
                                         item.title
@@ -256,13 +294,13 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             style: {
                                                 backgroundColor: '#568BF2',
                                                 borderRadius: 50,
-                                                width: 30,
+                                                width: 35,
                                                 marginTop: 2,
                                                 marginBottom: 10
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 117
+                                                lineNumber: 162
                                             }
                                         },
                                         _react3.default.createElement(
@@ -275,10 +313,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 },
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 124
+                                                    lineNumber: 169
                                                 }
                                             },
-                                            item.rating
+                                            item.score
                                         )
                                     ),
                                     _react3.default.createElement(
@@ -290,7 +328,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 130
+                                                lineNumber: 175
                                             }
                                         },
                                         "Popularity #",
@@ -305,7 +343,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 134
+                                                lineNumber: 179
                                             }
                                         },
                                         "Ranked #",
@@ -326,7 +364,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 140
+                                        lineNumber: 185
                                     }
                                 },
                                 _react3.default.createElement(_nativeBase.Icon, {
@@ -337,7 +375,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     name: _this.state.bookmarks.includes(item.id) == true ? 'ios-heart' : 'ios-heart-outline',
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 145
+                                        lineNumber: 190
                                     }
                                 })
                             )
@@ -351,6 +389,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             key: "componentDidMount",
             value: function componentDidMount() {
                 this._retrieveData();
+
+                this.setState({
+                    refresh: true
+                });
+                this.onLoad(this.state.startPage);
             }
         }, {
             key: "render",
@@ -361,14 +404,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         style: style.main.container,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 159
+                            lineNumber: 204
                         }
                     },
                     _react3.default.createElement(_reactNative.StatusBar, {
                         backgroundColor: "#346ad3",
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 160
+                            lineNumber: 205
                         }
                     }),
                     _react3.default.createElement(
@@ -376,7 +419,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 161
+                                lineNumber: 206
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -404,25 +447,21 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 162
+                                lineNumber: 207
                             }
                         })
                     ),
                     _react3.default.createElement(_reactNative.FlatList, {
-                        refreshing: false,
-                        onRefresh: function onRefresh() {
-                            return alert('onPull');
-                        },
+                        refreshing: this.state.refresh,
+                        onRefresh: this.handleOnPull,
                         onEndReachedThreshold: 0.1,
-                        onEndReached: function onEndReached() {
-                            return alert('end reach');
-                        },
+                        onEndReached: this.handleOnReach,
                         data: this.state.data,
                         keyExtractor: this._keyExtractor,
                         renderItem: this._renderItem,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 184
+                            lineNumber: 229
                         }
                     })
                 );
