@@ -149,8 +149,6 @@ export default class App extends Component{
             this.setState({
                 bookmarks: JSON.parse(value)
             })
-
-            // alert(value)
           }
          } catch (error) {
            // Error retrieving data
@@ -200,6 +198,14 @@ export default class App extends Component{
         </ListItem>
     )
 
+    listEmptyData = ()=>{
+        return(
+            <View style={styles.noDataWrapper}>
+                <Text>{this.state.onSearch == false ? 'No data to display, or still loading..' : 'No Results :('}</Text>
+            </View>
+        )
+    }
+
     render(){
         return(
             <Container style={styles.mainWrapper}>
@@ -208,7 +214,7 @@ export default class App extends Component{
 
                 <ThemeProvider>
                     <Toolbar
-                        centerElement="PuManga.com"
+                        centerElement="pumanga.com"
                         searchable={{
                             autoFocus: true,
                             placeholder: 'Search',
@@ -232,17 +238,17 @@ export default class App extends Component{
                     />
                 </ThemeProvider>
 
+                    <FlatList
+                        refreshing = {this.state.isLoading}
+                        onRefresh = {this.handleOnPull}
+                        onEndReachedThreshold = {0.1}
+                        onEndReached = {this.handleOnReach}
+                        data={this.state.data}
+                        keyExtractor={this._keyExtractor}
+                        renderItem={this._renderItem}
+                        ListEmptyComponent={this.listEmptyData}
+                    />
                 
-
-                {/* <FlatList
-                    refreshing = {this.state.isLoading}
-                    onRefresh = {this.handleOnPull}
-                    onEndReachedThreshold = {0.1}
-                    onEndReached = {this.handleOnReach}
-                    data={this.state.data}
-                    keyExtractor={this._keyExtractor}
-                    renderItem={this._renderItem}
-                /> */}
             </Container>
         )
     }
@@ -299,5 +305,17 @@ const styles = StyleSheet.create({
     listItemBookmarkIcon:{
         color: 'red',
         fontSize: 15
+    },
+    noDataWrapper: {
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor:'#f4f4f4',
+        borderRadius: 50,
+        margin: 20,
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 15,
+        paddingRight: 15
     }
 })

@@ -381,6 +381,27 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         )
                     )
                 );
+            }, _this.listEmptyData = function () {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.noDataWrapper,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 205
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 206
+                            }
+                        },
+                        _this.state.onSearch == false ? 'No data to display, or still loading..' : 'No Results :('
+                    )
+                );
             }, _temp), _possibleConstructorReturn(_this, _ret);
         }
 
@@ -405,14 +426,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         style: styles.mainWrapper,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 205
+                            lineNumber: 213
                         }
                     },
                     _react3.default.createElement(_reactNative.StatusBar, {
                         backgroundColor: "#346ad3",
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 207
+                            lineNumber: 215
                         }
                     }),
                     _react3.default.createElement(
@@ -420,11 +441,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 209
+                                lineNumber: 217
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
-                            centerElement: "PuManga.com",
+                            centerElement: "pumanga.com",
                             searchable: {
                                 autoFocus: true,
                                 placeholder: 'Search',
@@ -457,10 +478,24 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 210
+                                lineNumber: 218
                             }
                         })
-                    )
+                    ),
+                    _react3.default.createElement(_reactNative.FlatList, {
+                        refreshing: this.state.isLoading,
+                        onRefresh: this.handleOnPull,
+                        onEndReachedThreshold: 0.1,
+                        onEndReached: this.handleOnReach,
+                        data: this.state.data,
+                        keyExtractor: this._keyExtractor,
+                        renderItem: this._renderItem,
+                        ListEmptyComponent: this.listEmptyData,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 243
+                        }
+                    })
                 );
             }
         }]);
@@ -521,6 +556,18 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         listItemBookmarkIcon: {
             color: 'red',
             fontSize: 15
+        },
+        noDataWrapper: {
+            alignSelf: 'center',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#f4f4f4',
+            borderRadius: 50,
+            margin: 20,
+            paddingTop: 5,
+            paddingBottom: 5,
+            paddingLeft: 15,
+            paddingRight: 15
         }
     });
 });
