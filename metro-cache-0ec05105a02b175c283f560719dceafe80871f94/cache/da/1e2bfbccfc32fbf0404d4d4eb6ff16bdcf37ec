@@ -56,7 +56,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
     var imgResize = screenWidth / 65.25;
     var errorMessage = "Maaf terjadi kesalahan";
-    var rows = 15;
+    var rows = 5;
 
     var App = _wrapComponent("App")(function (_Component) {
         _inherits(App, _Component);
@@ -79,6 +79,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 bookmarks: [],
                 startPage: 0,
                 onSearch: false,
+                onReach: false,
                 isLoading: false
             }, _this.getMangaData = function (startPage) {
                 var reset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
@@ -139,7 +140,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 }).then(function (result) {
                     _this.setState({
                         data: result.data.data,
-                        isLoading: false
+                        isLoading: false,
+                        onReach: false
                     });
                 });
             }, _this.handleBookmark = function (id) {
@@ -169,7 +171,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             }, _this.handleOnReach = function () {
                 if (_this.state.onSearch == false) {
                     _this.setState({
-                        isLoading: true
+                        onReach: true
                     });
 
                     _this.getMangaData(_this.state.startPage);
@@ -402,6 +404,23 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         _this.state.onSearch == false ? 'No data to display, or still loading..' : 'No Results :('
                     )
                 );
+            }, _this.listFooterComponent = function () {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 213
+                        }
+                    },
+                    _this.state.onReach == true ? _react3.default.createElement(_nativeBase.Spinner, {
+                        color: "#e0e0e0",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 213
+                        }
+                    }) : null
+                );
             }, _temp), _possibleConstructorReturn(_this, _ret);
         }
 
@@ -426,14 +445,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         style: styles.mainWrapper,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 213
+                            lineNumber: 219
                         }
                     },
                     _react3.default.createElement(_reactNative.StatusBar, {
-                        backgroundColor: "#346ad3",
+                        backgroundColor: "#d14e23",
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 215
+                            lineNumber: 221
                         }
                     }),
                     _react3.default.createElement(
@@ -441,11 +460,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 217
+                                lineNumber: 223
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
-                            centerElement: "pumanga.com",
+                            centerElement: "pukomik.com",
                             searchable: {
                                 autoFocus: true,
                                 placeholder: 'Search',
@@ -470,7 +489,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             style: {
                                 container: {
-                                    backgroundColor: '#568BF2'
+                                    backgroundColor: '#f16334'
                                 }
                             },
                             onRightElementPress: function onRightElementPress(label) {
@@ -478,7 +497,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 218
+                                lineNumber: 224
                             }
                         })
                     ),
@@ -488,12 +507,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         onEndReachedThreshold: 0.1,
                         onEndReached: this.handleOnReach,
                         data: this.state.data,
+                        extraData: this.state,
                         keyExtractor: this._keyExtractor,
                         renderItem: this._renderItem,
                         ListEmptyComponent: this.listEmptyData,
+                        ListFooterComponent: this.listFooterComponent,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 243
+                            lineNumber: 249
                         }
                     })
                 );
@@ -530,7 +551,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             color: '#121212'
         },
         listItemScoreWrapper: {
-            backgroundColor: '#568BF2',
+            backgroundColor: '#f16334',
             borderRadius: 50,
             width: 35,
             marginTop: 2,

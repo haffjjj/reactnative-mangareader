@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import {Text, FlatList, StyleSheet, Image,View, Dimensions, StatusBar, AsyncStorage} from 'react-native'
 
-import {Container,ListItem, Body, Button, Icon} from 'native-base'
+import {Container,ListItem, Body, Button, Icon, Spinner} from 'native-base'
 
 import { Toolbar } from 'react-native-material-ui'
 import { ThemeProvider } from 'react-native-material-ui'
@@ -11,7 +11,7 @@ import axios from 'axios'
 const screenWidth = Dimensions.get('window').width
 const imgResize = screenWidth/65.25
 const errorMessage = "Maaf terjadi kesalahan"
-const rows = 15
+const rows = 5
 
 export default class App extends Component{
 
@@ -21,6 +21,7 @@ export default class App extends Component{
         bookmarks: [],
         startPage: 0,
         onSearch: false,
+        onReach: false,
         isLoading: false
     }
 
@@ -95,7 +96,8 @@ export default class App extends Component{
         }).then((result)=>{
             this.setState({
                 data: result.data.data,
-                isLoading:false
+                isLoading:false,
+                onReach: false
             })
         })
     }
@@ -127,7 +129,7 @@ export default class App extends Component{
     handleOnReach = ()=>{
         if(this.state.onSearch == false){
             this.setState({
-                isLoading:true
+                onReach: true
             })
             this.getMangaData(this.state.startPage)
         }
@@ -206,15 +208,21 @@ export default class App extends Component{
         )
     }
 
+    listFooterComponent = ()=>{
+        return(
+            <View>{this.state.onReach == true ? <Spinner color='#e0e0e0' /> : null}</View>
+        )
+    }
+
     render(){
         return(
             <Container style={styles.mainWrapper}>
 
-                <StatusBar backgroundColor='#346ad3'/>
+                <StatusBar backgroundColor='#d14e23'/>
 
                 <ThemeProvider>
                     <Toolbar
-                        centerElement="pumanga.com"
+                        centerElement="pukomik.com"
                         searchable={{
                             autoFocus: true,
                             placeholder: 'Search',
@@ -231,24 +239,26 @@ export default class App extends Component{
                         }}
                         style = {{
                             container: {
-                                backgroundColor: '#568BF2'
+                                backgroundColor: '#f16334'
                             }
                         }}
                         onRightElementPress={ (label) => { alert(JSON.stringify(label)) }}
                     />
                 </ThemeProvider>
-
+                    {/* <Text>{JSON.stringify(this.state.bookmarks)}</Text> */}
                     <FlatList
                         refreshing = {this.state.isLoading}
                         onRefresh = {this.handleOnPull}
                         onEndReachedThreshold = {0.1}
                         onEndReached = {this.handleOnReach}
                         data={this.state.data}
+                        extraData={this.state}
                         keyExtractor={this._keyExtractor}
                         renderItem={this._renderItem}
                         ListEmptyComponent={this.listEmptyData}
+                        ListFooterComponent={this.listFooterComponent}
                     />
-                
+
             </Container>
         )
     }
@@ -279,7 +289,7 @@ const styles = StyleSheet.create({
         color: '#121212'
     },
     listItemScoreWrapper: {
-        backgroundColor: '#568BF2',
+        backgroundColor: '#f16334',
         borderRadius: 50,
         width: 35,
         marginTop: 2,

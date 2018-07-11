@@ -8,21 +8,21 @@ const Main = createBottomTabNavigator({
     tabMain: {
         screen: Screens.Browse,
         navigationOptions: {
-            title: 'Browse',
-            tabBarIcon: ({focused, tintColor}) => {
-              return <Icon name="ios-browsers-outline" style={{
-                color: tintColor
+            showLabel:false,
+            tabBarIcon: ({focused}) => {
+              return <Icon name="md-browsers" style={{
+                color: focused == true ? '#f16334' : '#e0e0e0'
               }}/>
             }
-        }
+        },
     },
     tabBookmark: {
         screen: Screens.Bookmarks,
         navigationOptions: {
-            title: 'Bookmark',
+            // title: 'Bookmark',
             tabBarIcon: ({focused, tintColor}) => {
-              return <Icon name="ios-bookmark-outline" style={{
-                color: tintColor
+              return <Icon name="md-bookmark" style={{
+                color: focused == true ? '#f16334' : '#e0e0e0'
               }}/>
             }
         }
@@ -30,14 +30,20 @@ const Main = createBottomTabNavigator({
     tabDownloads: {
         screen: Screens.Downloads,
         navigationOptions: {
-            title: 'Download',
+            // title: 'Download',
             tabBarIcon: ({focused, tintColor}) => {
-              return <Icon name="ios-cloud-download-outline" style={{
-                color: tintColor
+              return <Icon name="md-cloud-download" style={{
+                color: focused == true ? '#f16334' : '#e0e0e0'
               }}/>
             }
         }
     }
+},
+{
+    tabBarOptions: {
+        showLabel: false,
+    }
+      
 })
 
 export default createStackNavigator({

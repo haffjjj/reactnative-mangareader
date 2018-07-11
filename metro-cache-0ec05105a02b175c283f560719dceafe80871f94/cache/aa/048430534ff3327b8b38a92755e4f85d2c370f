@@ -24,14 +24,13 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         tabMain: {
             screen: Screens.Browse,
             navigationOptions: {
-                title: 'Browse',
+                showLabel: false,
                 tabBarIcon: function tabBarIcon(_ref) {
-                    var focused = _ref.focused,
-                        tintColor = _ref.tintColor;
+                    var focused = _ref.focused;
                     return _react2.default.createElement(_nativeBase.Icon, {
-                        name: "ios-browsers-outline",
+                        name: "md-browsers",
                         style: {
-                            color: tintColor
+                            color: focused == true ? '#f16334' : '#e0e0e0'
                         },
                         __source: {
                             fileName: _jsxFileName,
@@ -44,14 +43,13 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         tabBookmark: {
             screen: Screens.Bookmarks,
             navigationOptions: {
-                title: 'Bookmark',
                 tabBarIcon: function tabBarIcon(_ref2) {
                     var focused = _ref2.focused,
                         tintColor = _ref2.tintColor;
                     return _react2.default.createElement(_nativeBase.Icon, {
-                        name: "ios-bookmark-outline",
+                        name: "md-bookmark",
                         style: {
-                            color: tintColor
+                            color: focused == true ? '#f16334' : '#e0e0e0'
                         },
                         __source: {
                             fileName: _jsxFileName,
@@ -64,14 +62,13 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         tabDownloads: {
             screen: Screens.Downloads,
             navigationOptions: {
-                title: 'Download',
                 tabBarIcon: function tabBarIcon(_ref3) {
                     var focused = _ref3.focused,
                         tintColor = _ref3.tintColor;
                     return _react2.default.createElement(_nativeBase.Icon, {
-                        name: "ios-cloud-download-outline",
+                        name: "md-cloud-download",
                         style: {
-                            color: tintColor
+                            color: focused == true ? '#f16334' : '#e0e0e0'
                         },
                         __source: {
                             fileName: _jsxFileName,
@@ -80,6 +77,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     });
                 }
             }
+        }
+    }, {
+        tabBarOptions: {
+            showLabel: false
         }
     });
     exports.default = (0, _reactNavigation.createStackNavigator)({
