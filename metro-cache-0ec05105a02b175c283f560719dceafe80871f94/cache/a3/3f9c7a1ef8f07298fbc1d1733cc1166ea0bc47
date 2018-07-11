@@ -1,7 +1,0 @@
-__d(function (global, _require, module, exports, _dependencyMap) {
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  var LINT = exports.LINT = 1;
-  var ELEVATION_ZINDEX = exports.ELEVATION_ZINDEX = 1;
-});

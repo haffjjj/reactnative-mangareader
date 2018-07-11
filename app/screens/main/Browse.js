@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {Text, FlatList, StyleSheet, Image,View, Dimensions, StatusBar, AsyncStorage} from 'react-native'
+import {Text, FlatList, StyleSheet, Image,View, Dimensions, StatusBar, AsyncStorage, TouchableNativeFeedback} from 'react-native'
 
 import {Container,ListItem, Body, Button, Icon, Spinner} from 'native-base'
 
@@ -38,8 +38,8 @@ export default class App extends Component{
     getMangaData = (startPage, reset = false)=>{
         axios({
             method: 'POST',
-            // url: 'http://192.168.43.142/api/get_mangas.php',
-            url: 'http://192.168.56.1/api/get_mangas.php',
+            url: 'http://192.168.43.142/api/get_mangas.php',
+            // url: 'http://192.168.56.1/api/get_mangas.php',
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: {
               start: startPage,
@@ -86,8 +86,8 @@ export default class App extends Component{
 
         axios({
             method: 'POST',
-            // url: 'http://192.168.43.142/api/get_mangas.php',
-            url: 'http://192.168.56.1/api/get_mangas_where.php',
+            url: 'http://192.168.43.142/api/get_mangas.php',
+            // url: 'http://192.168.56.1/api/get_mangas_where.php',
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: {
                 where: this.state.search,
@@ -144,6 +144,20 @@ export default class App extends Component{
         this.getMangaData(0,true)
     }
 
+    listEmptyData = ()=>{
+        return(
+            <View style={styles.noDataWrapper}>
+                <Text>{this.state.onSearch == false ? 'No data to display, or still loading..' : 'No Results :('}</Text>
+            </View>
+        )
+    }
+
+    listFooterComponent = ()=>{
+        return(
+            <View>{this.state.onReach == true ? <Spinner color='#e0e0e0' /> : null}</View>
+        )
+    }
+
     _retrieveData = async () => {
         try {
           const value = await AsyncStorage.getItem('mangaBookmarks')
@@ -190,29 +204,24 @@ export default class App extends Component{
                             <Text style={styles.listItemRanked}>Ranked #{item.ranked}</Text>
                         </View>
                     </View>
+                    
+                    <View style={styles.listItemBookmark}>  
+                        <TouchableNativeFeedback
+                            onPress={()=>this.handleBookmark(item.id)}
+                            background={TouchableNativeFeedback.SelectableBackgroundBorderless()}>
 
-                    <Button transparent onPress={()=>this.handleBookmark(item.id)} style={styles.listItemBookmark}>
-                        <Icon style={styles.listItemBookmarkIcon}  name={this.state.bookmarks.includes(item.id) == true ? 'ios-heart' : 'ios-heart-outline'} />
-                    </Button>
+                            <View style={styles.listItemBookmarkIconWrapper}>
+                                <Icon style={styles.listItemBookmarkIcon}  name={this.state.bookmarks.includes(item.id) == true ? 'ios-heart' : 'ios-heart-outline'} />
+                            </View>
+                            
+                        </TouchableNativeFeedback>
+                    </View>
+
 
                 </View>
             </Body>
         </ListItem>
     )
-
-    listEmptyData = ()=>{
-        return(
-            <View style={styles.noDataWrapper}>
-                <Text>{this.state.onSearch == false ? 'No data to display, or still loading..' : 'No Results :('}</Text>
-            </View>
-        )
-    }
-
-    listFooterComponent = ()=>{
-        return(
-            <View>{this.state.onReach == true ? <Spinner color='#e0e0e0' /> : null}</View>
-        )
-    }
 
     render(){
         return(
@@ -274,7 +283,8 @@ const styles = StyleSheet.create({
     },
     listItem:{
         flex: 5, 
-        flexDirection: 'row'
+        flexDirection: 'row',
+        paddingRight:10
     },
     listImage: {
         width: imgResize*20, 
@@ -282,8 +292,8 @@ const styles = StyleSheet.create({
         borderRadius: 8
     },
     listItemContent: {
-        paddingLeft: 5,
-        paddingRight: 5,
+        paddingLeft: 10,
+        paddingRight: 20,
     },
     listItemTitle: {
         color: '#121212'
@@ -311,6 +321,12 @@ const styles = StyleSheet.create({
     listItemBookmark: {
         alignSelf: 'center',
         flex: 1
+    },
+    listItemBookmarkIconWrapper:{
+        width:25,
+        height:25,
+        alignItems:'center',
+        justifyContent:'center'
     },
     listItemBookmarkIcon:{
         color: 'red',
