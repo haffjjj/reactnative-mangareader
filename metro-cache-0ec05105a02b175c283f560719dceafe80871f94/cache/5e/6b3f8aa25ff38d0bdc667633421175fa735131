@@ -1,0 +1,206 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Checkbox/Checkbox.react.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _propTypes = _require(_dependencyMap[3], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _IconToggle = _require(_dependencyMap[4], "../IconToggle");
+
+    var _IconToggle2 = _interopRequireDefault(_IconToggle);
+
+    var _RippleFeedback = _require(_dependencyMap[5], "../RippleFeedback");
+
+    var _RippleFeedback2 = _interopRequireDefault(_RippleFeedback);
+
+    var _utils = _require(_dependencyMap[6], "../utils");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Checkbox: {
+            displayName: "Checkbox"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Checkbox/Checkbox.react.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var propTypes = {
+        label: _propTypes2.default.string.isRequired,
+        value: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]).isRequired,
+        checked: _propTypes2.default.bool,
+        disabled: _propTypes2.default.bool,
+        uncheckedIcon: _propTypes2.default.string,
+        checkedIcon: _propTypes2.default.string,
+        onCheck: _propTypes2.default.func.isRequired,
+        style: _propTypes2.default.shape({
+            container: _utils.ViewPropTypes.style,
+            icon: _IconToggle2.default.propTypes.style,
+            label: _reactNative.Text.propTypes.style
+        }),
+        size: _propTypes2.default.number
+    };
+    var defaultProps = {
+        checked: false,
+        checkedIcon: 'check-box',
+        uncheckedIcon: 'check-box-outline-blank',
+        disabled: false,
+        style: {},
+        size: 24
+    };
+    var contextTypes = {
+        uiTheme: _propTypes2.default.object.isRequired
+    };
+
+    function getStyles(props, context) {
+        var _context$uiTheme = context.uiTheme,
+            checkbox = _context$uiTheme.checkbox,
+            palette = _context$uiTheme.palette;
+        var disabled = props.disabled;
+        var local = {};
+        return {
+            container: [checkbox.container, local.container, props.style.container],
+            icon: [checkbox.icon, props.style.icon],
+            label: [checkbox.label, local.label, props.style.label, disabled && {
+                color: palette.disabledTextColor
+            }]
+        };
+    }
+
+    var Checkbox = _wrapComponent("Checkbox")(function (_PureComponent) {
+        _inherits(Checkbox, _PureComponent);
+
+        function Checkbox() {
+            var _ref;
+
+            var _temp, _this, _ret;
+
+            _classCallCheck(this, Checkbox);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Checkbox.__proto__ || Object.getPrototypeOf(Checkbox)).call.apply(_ref, [this].concat(args))), _this), _this.onPress = function () {
+                var _this$props = _this.props,
+                    checked = _this$props.checked,
+                    disabled = _this$props.disabled,
+                    onCheck = _this$props.onCheck,
+                    value = _this$props.value;
+
+                if (!disabled && onCheck) {
+                    onCheck(!checked, value);
+                }
+            }, _temp), _possibleConstructorReturn(_this, _ret);
+        }
+
+        _createClass(Checkbox, [{
+            key: "render",
+            value: function render() {
+                var _props = this.props,
+                    checked = _props.checked,
+                    checkedIcon = _props.checkedIcon,
+                    uncheckedIcon = _props.uncheckedIcon,
+                    disabled = _props.disabled,
+                    value = _props.value,
+                    size = _props.size;
+                var styles = getStyles(this.props, this.context);
+
+                var labelColor = _reactNative.StyleSheet.flatten(styles.label).color;
+
+                var iconColor = _reactNative.StyleSheet.flatten(styles.icon).color;
+
+                var content = _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.container,
+                        pointerEvents: "box-only",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 108
+                        }
+                    },
+                    _react3.default.createElement(_IconToggle2.default, {
+                        key: value + "-" + checked,
+                        name: checked ? checkedIcon : uncheckedIcon,
+                        disabled: disabled,
+                        color: checked ? iconColor : labelColor,
+                        onPress: this.onPress,
+                        size: size,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 109
+                        }
+                    }),
+                    _react3.default.createElement(
+                        _reactNative.Text,
+                        {
+                            style: styles.label,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 117
+                            }
+                        },
+                        this.props.label
+                    )
+                );
+
+                if (disabled) {
+                    return content;
+                }
+
+                return _react3.default.createElement(
+                    _RippleFeedback2.default,
+                    {
+                        onPress: this.onPress,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 128
+                        }
+                    },
+                    content
+                );
+            }
+        }]);
+
+        return Checkbox;
+    }(_react2.PureComponent));
+
+    Checkbox.propTypes = propTypes;
+    Checkbox.defaultProps = defaultProps;
+    Checkbox.contextTypes = contextTypes;
+    exports.default = Checkbox;
+});

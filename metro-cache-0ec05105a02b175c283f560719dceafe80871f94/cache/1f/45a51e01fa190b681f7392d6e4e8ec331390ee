@@ -1,0 +1,15 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _reactNative = _require(_dependencyMap[0], "react-native");
+
+  var _KeyboardAwareHOC = _require(_dependencyMap[1], "./KeyboardAwareHOC");
+
+  var _KeyboardAwareHOC2 = _interopRequireDefault(_KeyboardAwareHOC);
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = (0, _KeyboardAwareHOC2.default)(_reactNative.ScrollView);
+});

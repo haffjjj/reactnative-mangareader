@@ -1,0 +1,166 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Drawer/Header.react.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _reactNative = _require(_dependencyMap[3], "react-native");
+
+    var _HeaderAccount = _require(_dependencyMap[4], "./HeaderAccount.react");
+
+    var _HeaderAccount2 = _interopRequireDefault(_HeaderAccount);
+
+    var _utils = _require(_dependencyMap[5], "../utils");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Header: {
+            displayName: "Header"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Drawer/Header.react.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var propTypes = {
+        image: _propTypes2.default.shape({
+            type: _propTypes2.default.oneOf([_reactNative.Image])
+        }),
+        backgroundColor: _propTypes2.default.string,
+        children: _propTypes2.default.node,
+        style: _propTypes2.default.shape({
+            contentContainer: _utils.ViewPropTypes.style,
+            container: _utils.ViewPropTypes.style
+        })
+    };
+    var defaultProps = {
+        image: null,
+        backgroundColor: null,
+        children: null,
+        style: {}
+    };
+    var contextTypes = {
+        uiTheme: _propTypes2.default.object.isRequired
+    };
+
+    function getStyles(props, context) {
+        var drawerHeader = context.uiTheme.drawerHeader;
+        var image = props.image;
+        var local = {};
+
+        if (image) {
+            local.contentContainer = {
+                backgroundColor: null
+            };
+        }
+
+        return {
+            container: [drawerHeader.container, props.style.container],
+            contentContainer: [drawerHeader.contentContainer, props.style.contentContainer, local.contentContainer]
+        };
+    }
+
+    var Header = _wrapComponent("Header")(function (_PureComponent) {
+        _inherits(Header, _PureComponent);
+
+        function Header() {
+            _classCallCheck(this, Header);
+
+            return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
+        }
+
+        _createClass(Header, [{
+            key: "render",
+            value: function render() {
+                var _props = this.props,
+                    image = _props.image,
+                    children = _props.children;
+                var styles = getStyles(this.props, this.context);
+
+                var flatten = _reactNative.StyleSheet.flatten(styles.contentContainer);
+
+                var content = _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: styles.contentContainer,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 61
+                        }
+                    },
+                    children
+                );
+
+                if (image) {
+                    return _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 68
+                            }
+                        },
+                        _react3.default.cloneElement(image, {
+                            style: [{
+                                height: flatten.height
+                            }]
+                        }),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: [styles.container],
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 70
+                                }
+                            },
+                            content
+                        )
+                    );
+                }
+
+                return content;
+            }
+        }]);
+
+        return Header;
+    }(_react2.PureComponent));
+
+    Header.propTypes = propTypes;
+    Header.defaultProps = defaultProps;
+    Header.contextTypes = contextTypes;
+    Header.Account = _HeaderAccount2.default;
+    exports.default = Header;
+});

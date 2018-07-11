@@ -1,0 +1,13 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    exports.BackAndroid = exports.ViewPropTypes = undefined;
+
+    var _reactNative = _require(_dependencyMap[0], "react-native");
+
+    var ViewPropTypes = _reactNative.ViewPropTypes || _reactNative.View.propTypes;
+    var BackAndroid = _reactNative.BackHandler || _reactNative.BackAndroid;
+    exports.ViewPropTypes = ViewPropTypes;
+    exports.BackAndroid = BackAndroid;
+});

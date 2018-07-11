@@ -1,0 +1,331 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _class,
+        _temp,
+        _initialiseProps,
+        _jsxFileName = "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/IconToggle/IconToggle.react.js";
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    var _propTypes = _require(_dependencyMap[3], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _color = _require(_dependencyMap[4], "color");
+
+    var _color2 = _interopRequireDefault(_color);
+
+    var _utils = _require(_dependencyMap[5], "../utils");
+
+    var _constants = _require(_dependencyMap[6], "../styles/constants");
+
+    var _Icon = _require(_dependencyMap[7], "../Icon");
+
+    var _Icon2 = _interopRequireDefault(_Icon);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        IconToggle: {
+            displayName: "IconToggle"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/IconToggle/IconToggle.react.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var propTypes = {
+        testID: _propTypes2.default.string,
+        color: _propTypes2.default.string,
+        underlayColor: _propTypes2.default.string,
+        maxOpacity: _propTypes2.default.number,
+        percent: _propTypes2.default.number,
+        disabled: _propTypes2.default.bool,
+        size: _propTypes2.default.number,
+        name: _propTypes2.default.string,
+        children: _propTypes2.default.element,
+        onPress: _propTypes2.default.func,
+        style: _propTypes2.default.oneOfType([_propTypes2.default.shape({
+            container: _utils.ViewPropTypes.style,
+            icon: _reactNative.Text.propTypes.style
+        }), _propTypes2.default.array])
+    };
+    var defaultProps = {
+        testID: null,
+        children: null,
+        onPress: null,
+        color: null,
+        underlayColor: null,
+        size: 24,
+        name: null,
+        disabled: false,
+        percent: 90,
+        maxOpacity: 0.16,
+        style: {}
+    };
+    var contextTypes = {
+        uiTheme: _propTypes2.default.object.isRequired
+    };
+
+    function getStyles(props, context, state) {
+        var _context$uiTheme = context.uiTheme,
+            iconToggle = _context$uiTheme.iconToggle,
+            palette = _context$uiTheme.palette;
+        var local = {};
+
+        if (props.color) {
+            local.icon = {
+                color: props.color
+            };
+        }
+
+        if (state.containerSize) {
+            local.container = {
+                width: state.containerSize,
+                height: state.containerSize
+            };
+        }
+
+        return {
+            container: [iconToggle.container, local.container, props.style.container],
+            icon: [iconToggle.icon, local.icon, props.style.icon, props.disabled && {
+                color: palette.disabledColor
+            }]
+        };
+    }
+
+    function getIconSize(props, context) {
+        var spacing = context.uiTheme.spacing;
+        var icon = props.style.icon;
+
+        if (icon && icon.width) {
+            return icon.width;
+        }
+
+        if (props.size) {
+            return props.size;
+        }
+
+        return spacing.iconSize;
+    }
+
+    function getContainerSize(iconSize) {
+        return iconSize * 2;
+    }
+
+    function getRippleSize(containerSize, percent) {
+        return percent / 100 * containerSize;
+    }
+
+    var IconToggle = _wrapComponent("IconToggle")((_temp = _class = function (_PureComponent) {
+        _inherits(IconToggle, _PureComponent);
+
+        function IconToggle(props, context) {
+            _classCallCheck(this, IconToggle);
+
+            var _this = _possibleConstructorReturn(this, (IconToggle.__proto__ || Object.getPrototypeOf(IconToggle)).call(this, props, context));
+
+            _initialiseProps.call(_this);
+
+            var iconSize = getIconSize(props, context);
+            var containerSize = getContainerSize(iconSize);
+            _this.state = {
+                scaleValue: new _reactNative.Animated.Value(0.01),
+                opacityValue: new _reactNative.Animated.Value(props.maxOpacity),
+                containerSize: containerSize,
+                iconSize: iconSize,
+                rippleSize: getRippleSize(containerSize, props.percent)
+            };
+            _this.onPressIn = _this.onPressIn.bind(_this);
+            _this.onPressOut = _this.onPressOut.bind(_this);
+            return _this;
+        }
+
+        _createClass(IconToggle, [{
+            key: "componentWillReceiveProps",
+            value: function componentWillReceiveProps(nextProps) {
+                var iconSize = getIconSize(nextProps, this.context);
+
+                if (this.state.iconSize !== iconSize || nextProps.percent !== this.props.percent) {
+                    var containerSize = getContainerSize(iconSize);
+                    this.setState({
+                        containerSize: containerSize,
+                        iconSize: iconSize,
+                        rippleSize: getRippleSize(containerSize, nextProps.percent)
+                    });
+                }
+            }
+        }, {
+            key: "onPressIn",
+            value: function onPressIn() {
+                var disabled = this.props.disabled;
+
+                if (!disabled) {
+                    _reactNative.Animated.timing(this.state.scaleValue, {
+                        toValue: 1,
+                        duration: 225,
+                        easing: _reactNative.Easing.bezier(0.0, 0.0, 0.2, 1),
+                        useNativeDriver: true
+                    }).start();
+                }
+            }
+        }, {
+            key: "onPressOut",
+            value: function onPressOut() {
+                var _this2 = this;
+
+                var _props = this.props,
+                    disabled = _props.disabled,
+                    onPress = _props.onPress,
+                    maxOpacity = _props.maxOpacity;
+
+                if (!disabled) {
+                    _reactNative.Animated.timing(this.state.opacityValue, {
+                        toValue: 0,
+                        useNativeDriver: true
+                    }).start(function () {
+                        _this2.state.scaleValue.setValue(0.01);
+
+                        _this2.state.opacityValue.setValue(maxOpacity);
+                    });
+
+                    if (onPress) {
+                        onPress();
+                    }
+                }
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var testID = this.props.testID;
+                var styles = getStyles(this.props, this.context, this.state);
+                return _react3.default.createElement(
+                    _reactNative.TouchableWithoutFeedback,
+                    {
+                        testID: testID,
+                        onPressIn: this.onPressIn,
+                        onPressOut: this.onPressOut,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 237
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 242
+                            }
+                        },
+                        this.renderRippleView(styles),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.container,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 244
+                                }
+                            },
+                            this.renderIcon(styles)
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return IconToggle;
+    }(_react2.PureComponent), _initialiseProps = function _initialiseProps() {
+        var _this3 = this;
+
+        this.renderRippleView = function (styles) {
+            var _state = _this3.state,
+                scaleValue = _state.scaleValue,
+                opacityValue = _state.opacityValue,
+                containerSize = _state.containerSize,
+                rippleSize = _state.rippleSize;
+            var color = (0, _color2.default)(_reactNative.StyleSheet.flatten(styles.icon).color);
+            _this3.maxOpacity = color.isDark() ? 0.12 : 0.30;
+            var top = (containerSize - rippleSize) / 2;
+            return _react3.default.createElement(_reactNative.Animated.View, {
+                style: [{
+                    position: 'absolute',
+                    top: top,
+                    left: top,
+                    width: rippleSize,
+                    height: rippleSize,
+                    borderRadius: rippleSize / 2,
+                    transform: [{
+                        scale: scaleValue
+                    }],
+                    opacity: opacityValue,
+                    backgroundColor: color.toString(),
+                    zIndex: _reactNative.Platform.OS === 'ios' ? _constants.ELEVATION_ZINDEX : null
+                }],
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 203
+                }
+            });
+        };
+
+        this.renderIcon = function (styles) {
+            var _props2 = _this3.props,
+                name = _props2.name,
+                children = _props2.children;
+            var iconSize = _this3.state.iconSize;
+
+            if (children) {
+                return children;
+            }
+
+            var _StyleSheet$flatten = _reactNative.StyleSheet.flatten(styles.icon),
+                color = _StyleSheet$flatten.color;
+
+            return _react3.default.createElement(_Icon2.default, {
+                name: name,
+                color: color,
+                size: iconSize,
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 229
+                }
+            });
+        };
+    }, _temp));
+
+    IconToggle.propTypes = propTypes;
+    IconToggle.defaultProps = defaultProps;
+    IconToggle.contextTypes = contextTypes;
+    exports.default = IconToggle;
+});

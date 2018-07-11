@@ -55,6 +55,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     var screenWidth = _reactNative.Dimensions.get('window').width;
 
     var imgResize = screenWidth / 65.25;
+    var errorMessage = "Maaf terjadi kesalahan";
+    var rows = 15;
 
     var App = _wrapComponent("App")(function (_Component) {
         _inherits(App, _Component);
@@ -77,23 +79,23 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 bookmarks: [],
                 startPage: 0,
                 onSearch: false,
-                refresh: false
-            }, _this.onLoad = function (startPage) {
+                isLoading: false
+            }, _this.getMangaData = function (startPage) {
                 var reset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
                 (0, _axios2.default)({
                     method: 'POST',
-                    url: 'http://192.168.43.142/api/get_mangas.php',
+                    url: 'http://192.168.56.1/api/get_mangas.php',
                     headers: {
                         'content-type': 'application/x-www-form-urlencoded'
                     },
                     data: {
                         start: startPage,
-                        rows: 5,
+                        rows: rows,
                         key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
                     }
                 }).then(function (result) {
                     _this.setState({
-                        refresh: false
+                        isLoading: false
                     });
 
                     if (result.data.result == true) {
@@ -104,29 +106,29 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             _this.setState({
                                 data: data,
                                 startPage: _this.state.startPage + 5,
-                                refresh: false
+                                isLoading: false
                             });
                         } else {
                             _this.setState({
                                 data: result.data.data,
                                 startPage: 0,
-                                refresh: false
+                                isLoading: false
                             });
                         }
                     } else {
-                        alert('Terjadi Kesalahan :(');
+                        alert(errorMessage);
                     }
                 }).catch(function () {
-                    alert('Terjadi Kesalahan :(');
+                    alert(errorMessage);
                 });
             }, _this.handleSearch = function () {
                 _this.setState({
-                    refresh: true
+                    isLoading: true
                 });
 
                 (0, _axios2.default)({
                     method: 'POST',
-                    url: 'http://192.168.43.142/api/get_mangas.php',
+                    url: 'http://192.168.56.1/api/get_mangas_where.php',
                     headers: {
                         'content-type': 'application/x-www-form-urlencoded'
                     },
@@ -137,7 +139,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 }).then(function (result) {
                     _this.setState({
                         data: result.data.data,
-                        refresh: false
+                        isLoading: false
                     });
                 });
             }, _this.handleBookmark = function (id) {
@@ -159,26 +161,26 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             }, _this.handleOnPull = function () {
                 if (_this.state.onSearch == false) {
                     _this.setState({
-                        refresh: true
+                        isLoading: true
                     });
 
-                    _this.onLoad(0, true);
+                    _this.getMangaData(0, true);
                 }
             }, _this.handleOnReach = function () {
                 if (_this.state.onSearch == false) {
                     _this.setState({
-                        refresh: true
+                        isLoading: true
                     });
 
-                    _this.onLoad(_this.state.startPage);
+                    _this.getMangaData(_this.state.startPage);
                 }
             }, _this.handleOnSearchBack = function () {
                 _this.setState({
-                    refresh: true,
+                    isLoading: true,
                     onSearch: false
                 });
 
-                _this.onLoad(0, true);
+                _this.getMangaData(0, true);
             }, _this._retrieveData = function _callee() {
                 var value;
                 return regeneratorRuntime.async(function _callee$(_context) {
@@ -248,7 +250,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 181
+                            lineNumber: 175
                         }
                     },
                     _react3.default.createElement(
@@ -256,68 +258,53 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 182
+                                lineNumber: 176
                             }
                         },
                         _react3.default.createElement(
                             _reactNative.View,
                             {
-                                style: {
-                                    flex: 1,
-                                    flexDirection: 'row'
-                                },
+                                style: styles.listWrapper,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 183
+                                    lineNumber: 177
                                 }
                             },
                             _react3.default.createElement(
                                 _reactNative.View,
                                 {
-                                    style: {
-                                        flex: 5,
-                                        flexDirection: 'row'
-                                    },
+                                    style: styles.listItem,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 185
+                                        lineNumber: 179
                                     }
                                 },
                                 _react3.default.createElement(_reactNative.Image, {
-                                    style: {
-                                        width: imgResize * 20,
-                                        height: imgResize * 30,
-                                        borderRadius: 8
-                                    },
+                                    style: styles.listImage,
                                     source: {
                                         uri: item.img
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 186
+                                        lineNumber: 180
                                     }
                                 }),
                                 _react3.default.createElement(
                                     _reactNative.View,
                                     {
-                                        style: {
-                                            paddingLeft: 5,
-                                            paddingRight: 5
-                                        },
+                                        style: styles.listItemContent,
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 194
+                                            lineNumber: 184
                                         }
                                     },
                                     _react3.default.createElement(
                                         _reactNative.Text,
                                         {
-                                            style: {
-                                                color: '#121212'
-                                            },
+                                            style: styles.listItemTitle,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 198
+                                                lineNumber: 185
                                             }
                                         },
                                         item.title
@@ -325,29 +312,19 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     _react3.default.createElement(
                                         _reactNative.View,
                                         {
-                                            style: {
-                                                backgroundColor: '#568BF2',
-                                                borderRadius: 50,
-                                                width: 35,
-                                                marginTop: 2,
-                                                marginBottom: 10
-                                            },
+                                            style: styles.listItemScoreWrapper,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 201
+                                                lineNumber: 186
                                             }
                                         },
                                         _react3.default.createElement(
                                             _reactNative.Text,
                                             {
-                                                style: {
-                                                    textAlign: 'center',
-                                                    color: 'white',
-                                                    fontSize: 11
-                                                },
+                                                style: styles.listItemScore,
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 208
+                                                    lineNumber: 187
                                                 }
                                             },
                                             item.score
@@ -356,13 +333,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     _react3.default.createElement(
                                         _reactNative.Text,
                                         {
-                                            style: {
-                                                fontSize: 12,
-                                                color: '#878787'
-                                            },
+                                            style: styles.listItemPopularity,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 214
+                                                lineNumber: 189
                                             }
                                         },
                                         "Popularity #",
@@ -371,13 +345,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     _react3.default.createElement(
                                         _reactNative.Text,
                                         {
-                                            style: {
-                                                fontSize: 12,
-                                                color: '#878787'
-                                            },
+                                            style: styles.listItemRanked,
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 218
+                                                lineNumber: 190
                                             }
                                         },
                                         "Ranked #",
@@ -392,24 +363,18 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     onPress: function onPress() {
                                         return _this.handleBookmark(item.id);
                                     },
-                                    style: {
-                                        alignSelf: 'center',
-                                        flex: 1
-                                    },
+                                    style: styles.listItemBookmark,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 224
+                                        lineNumber: 194
                                     }
                                 },
                                 _react3.default.createElement(_nativeBase.Icon, {
-                                    style: {
-                                        color: 'red',
-                                        fontSize: 15
-                                    },
+                                    style: styles.listItemBookmarkIcon,
                                     name: _this.state.bookmarks.includes(item.id) == true ? 'ios-heart' : 'ios-heart-outline',
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 229
+                                        lineNumber: 195
                                     }
                                 })
                             )
@@ -425,9 +390,9 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 this._retrieveData();
 
                 this.setState({
-                    refresh: true
+                    isLoading: true
                 });
-                this.onLoad(this.state.startPage);
+                this.getMangaData(this.state.startPage);
             }
         }, {
             key: "render",
@@ -440,14 +405,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         style: styles.mainWrapper,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 243
+                            lineNumber: 205
                         }
                     },
                     _react3.default.createElement(_reactNative.StatusBar, {
                         backgroundColor: "#346ad3",
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 245
+                            lineNumber: 207
                         }
                     }),
                     _react3.default.createElement(
@@ -455,7 +420,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 247
+                                lineNumber: 209
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -492,23 +457,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 248
+                                lineNumber: 210
                             }
                         })
-                    ),
-                    _react3.default.createElement(_reactNative.FlatList, {
-                        refreshing: this.state.refresh,
-                        onRefresh: this.handleOnPull,
-                        onEndReachedThreshold: 0.1,
-                        onEndReached: this.handleOnReach,
-                        data: this.state.data,
-                        keyExtractor: this._keyExtractor,
-                        renderItem: this._renderItem,
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 273
-                        }
-                    })
+                    )
                 );
             }
         }]);
@@ -521,6 +473,54 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     var styles = _reactNative.StyleSheet.create({
         mainWrapper: {
             backgroundColor: 'white'
+        },
+        listWrapper: {
+            flex: 1,
+            flexDirection: 'row'
+        },
+        listItem: {
+            flex: 5,
+            flexDirection: 'row'
+        },
+        listImage: {
+            width: imgResize * 20,
+            height: imgResize * 30,
+            borderRadius: 8
+        },
+        listItemContent: {
+            paddingLeft: 5,
+            paddingRight: 5
+        },
+        listItemTitle: {
+            color: '#121212'
+        },
+        listItemScoreWrapper: {
+            backgroundColor: '#568BF2',
+            borderRadius: 50,
+            width: 35,
+            marginTop: 2,
+            marginBottom: 10
+        },
+        listItemScore: {
+            textAlign: 'center',
+            color: 'white',
+            fontSize: 11
+        },
+        listItemPopularity: {
+            fontSize: 12,
+            color: '#878787'
+        },
+        listItemRanked: {
+            fontSize: 12,
+            color: '#878787'
+        },
+        listItemBookmark: {
+            alignSelf: 'center',
+            flex: 1
+        },
+        listItemBookmarkIcon: {
+            color: 'red',
+            fontSize: 15
         }
     });
 });

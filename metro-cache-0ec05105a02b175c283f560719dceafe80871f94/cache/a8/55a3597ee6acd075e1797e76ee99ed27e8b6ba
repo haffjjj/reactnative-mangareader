@@ -1,0 +1,16 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _Badge = _require(_dependencyMap[0], "./Badge.react");
+
+  Object.defineProperty(exports, "default", {
+    enumerable: true,
+    get: function get() {
+      return _interopRequireDefault(_Badge).default;
+    }
+  });
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+});

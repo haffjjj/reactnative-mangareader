@@ -1,0 +1,210 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Drawer/Section.react.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _reactNative = _require(_dependencyMap[3], "react-native");
+
+    var _Subheader = _require(_dependencyMap[4], "../Subheader");
+
+    var _Subheader2 = _interopRequireDefault(_Subheader);
+
+    var _Divider = _require(_dependencyMap[5], "../Divider");
+
+    var _Divider2 = _interopRequireDefault(_Divider);
+
+    var _ListItem = _require(_dependencyMap[6], "../ListItem");
+
+    var _ListItem2 = _interopRequireDefault(_ListItem);
+
+    var _utils = _require(_dependencyMap[7], "../utils");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Section: {
+            displayName: "Section"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Drawer/Section.react.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var propTypes = {
+        title: _propTypes2.default.string,
+        items: _propTypes2.default.arrayOf(_propTypes2.default.shape({
+            icon: _propTypes2.default.string,
+            value: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.element]).isRequired,
+            label: _propTypes2.default.string,
+            onPress: _propTypes2.default.func,
+            onLongPress: _propTypes2.default.func,
+            active: _propTypes2.default.bool,
+            disabled: _propTypes2.default.bool
+        })),
+        divider: _propTypes2.default.bool,
+        style: _propTypes2.default.shape({
+            container: _utils.ViewPropTypes.style,
+            item: _utils.ViewPropTypes.style,
+            subheader: _utils.ViewPropTypes.style,
+            icon: _reactNative.Text.propTypes.style,
+            value: _reactNative.Text.propTypes.style,
+            label: _reactNative.Text.propTypes.style
+        }),
+        key: _propTypes2.default.string
+    };
+    var defaultProps = {
+        title: null,
+        items: [],
+        divider: false,
+        style: {},
+        key: ''
+    };
+    var contextTypes = {
+        uiTheme: _propTypes2.default.object.isRequired
+    };
+
+    function getStyles(props, context) {
+        var drawerSection = context.uiTheme.drawerSection;
+        return {
+            container: [drawerSection.container, props.style.container],
+            item: [drawerSection.item, props.style.item],
+            subheader: [drawerSection.subheader, props.style.subheader],
+            icon: [drawerSection.icon, props.style.icon],
+            value: [drawerSection.value, props.style.value],
+            label: [drawerSection.label, props.style.label]
+        };
+    }
+
+    var Section = _wrapComponent("Section")(function (_PureComponent) {
+        _inherits(Section, _PureComponent);
+
+        function Section() {
+            var _ref;
+
+            var _temp, _this, _ret;
+
+            _classCallCheck(this, Section);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Section.__proto__ || Object.getPrototypeOf(Section)).call.apply(_ref, [this].concat(args))), _this), _this.renderTitle = function () {
+                var title = _this.props.title;
+
+                if (!title) {
+                    return null;
+                }
+
+                return _react3.default.createElement(_Subheader2.default, {
+                    text: title,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 83
+                    }
+                });
+            }, _temp), _possibleConstructorReturn(_this, _ret);
+        }
+
+        _createClass(Section, [{
+            key: "render",
+            value: function render() {
+                var _this2 = this;
+
+                var _props = this.props,
+                    items = _props.items,
+                    divider = _props.divider;
+                var typography = this.context.uiTheme.typography;
+                var styles = getStyles(this.props, this.context);
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        key: this.props.key,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 92
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: styles.container,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 93
+                            }
+                        },
+                        this.renderTitle(styles),
+                        items && items.map(function (item) {
+                            var style = {
+                                primaryText: typography.buttons
+                            };
+
+                            if (item.active) {
+                                style = _this2.context.uiTheme.drawerSectionActiveItem;
+                            }
+
+                            return _react3.default.createElement(_ListItem2.default, {
+                                dense: true,
+                                key: item.key ? item.key : item.icon,
+                                leftElement: item.icon,
+                                centerElement: item.value,
+                                onPress: item.onPress,
+                                style: style,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 103
+                                }
+                            });
+                        })
+                    ),
+                    divider && _react3.default.createElement(_Divider2.default, {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 114
+                        }
+                    })
+                );
+            }
+        }]);
+
+        return Section;
+    }(_react2.PureComponent));
+
+    Section.propTypes = propTypes;
+    Section.defaultProps = defaultProps;
+    Section.contextTypes = contextTypes;
+    exports.default = Section;
+});

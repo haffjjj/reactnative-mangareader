@@ -1,0 +1,317 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _class,
+        _temp,
+        _initialiseProps,
+        _jsxFileName = "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Snackbar/Snackbar.react.js";
+
+    var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+    var _propTypes = _require(_dependencyMap[2], "prop-types");
+
+    var _propTypes2 = _interopRequireDefault(_propTypes);
+
+    var _reactNative = _require(_dependencyMap[3], "react-native");
+
+    var _utils = _require(_dependencyMap[4], "../utils");
+
+    var _Button = _require(_dependencyMap[5], "../Button");
+
+    var _Button2 = _interopRequireDefault(_Button);
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        Snackbar: {
+            displayName: "Snackbar"
+        }
+    };
+
+    var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/neo/NodeJS/Rn/learn/node_modules/react-native-material-ui/src/Snackbar/Snackbar.react.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _reactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var propTypes = {
+        message: _propTypes2.default.string.isRequired,
+        visible: _propTypes2.default.bool,
+        timeout: _propTypes2.default.number,
+        onRequestClose: _propTypes2.default.func.isRequired,
+        bottomNavigation: _propTypes2.default.bool,
+        onActionPress: _propTypes2.default.func,
+        actionText: _propTypes2.default.string,
+        button: _propTypes2.default.shape(_extends({}, _Button2.default.propTypes, {
+            text: _propTypes2.default.string
+        })),
+        style: _propTypes2.default.shape({
+            container: _utils.ViewPropTypes.style,
+            message: _utils.ViewPropTypes.style
+        }),
+        onHeightChange: _propTypes2.default.func,
+        onPress: _propTypes2.default.func
+    };
+    var defaultProps = {
+        onActionPress: null,
+        actionText: null,
+        visible: false,
+        timeout: 2750,
+        bottomNavigation: false,
+        style: {},
+        button: {},
+        onHeightChange: null,
+        onPress: null
+    };
+    var contextTypes = {
+        uiTheme: _propTypes2.default.object.isRequired
+    };
+
+    function getStyles(props, context) {
+        var snackbar = context.uiTheme.snackbar;
+        var local = {};
+        return {
+            container: [snackbar.container, local.container, props.style.container],
+            content: [snackbar.content, local.content, props.style.content],
+            message: [snackbar.message, local.message, props.style.message]
+        };
+    }
+
+    var Snackbar = _wrapComponent("Snackbar")((_temp = _class = function (_PureComponent) {
+        _inherits(Snackbar, _PureComponent);
+
+        function Snackbar(props, context) {
+            _classCallCheck(this, Snackbar);
+
+            var _this = _possibleConstructorReturn(this, (Snackbar.__proto__ || Object.getPrototypeOf(Snackbar)).call(this, props, context));
+
+            _initialiseProps.call(_this);
+
+            _this.onTextLayout = _this.onTextLayout.bind(_this);
+            var styles = getStyles(props, context);
+            _this.state = {
+                bottomPosition: 0,
+                styles: styles,
+                visible: props.visible
+            };
+            return _this;
+        }
+
+        _createClass(Snackbar, [{
+            key: "componentWillMount",
+            value: function componentWillMount() {
+                this.visibility = new _reactNative.Animated.Value(this.props.visible ? 1 : 0);
+            }
+        }, {
+            key: "componentWillReceiveProps",
+            value: function componentWillReceiveProps(nextProps) {
+                var _this2 = this;
+
+                var _props = this.props,
+                    style = _props.style,
+                    visible = _props.visible,
+                    bottomNavigation = _props.bottomNavigation;
+
+                if (nextProps.style !== style) {
+                    this.setState({
+                        styles: getStyles(this.props, this.context)
+                    });
+                }
+
+                if (nextProps.visible !== visible) {
+                    if (nextProps.visible) {
+                        this.setState({
+                            visible: true
+                        });
+                        this.setHideTimer(nextProps);
+                    }
+
+                    _reactNative.Animated.timing(this.visibility, {
+                        toValue: nextProps.visible ? 1 : 0,
+                        duration: 300
+                    }).start(function () {
+                        _this2.setState({
+                            visible: nextProps.visible
+                        });
+                    });
+                }
+
+                if (nextProps.bottomNavigation !== bottomNavigation) {
+                    this.move(nextProps.bottomNavigation);
+                }
+            }
+        }, {
+            key: "componentWillUnmount",
+            value: function componentWillUnmount() {
+                clearTimeout(this.hideTimer);
+            }
+        }, {
+            key: "onTextLayout",
+            value: function onTextLayout(_ref) {
+                var height = _ref.nativeEvent.layout.height;
+                var _props2 = this.props,
+                    message = _props2.message,
+                    onHeightChange = _props2.onHeightChange;
+                var styles = this.state.styles;
+
+                if (message && onHeightChange) {
+                    onHeightChange(height + _reactNative.StyleSheet.flatten(styles.message).marginVertical * 2);
+                }
+            }
+        }, {
+            key: "setHideTimer",
+            value: function setHideTimer(props) {
+                var timeout = props.timeout,
+                    onRequestClose = props.onRequestClose;
+
+                if (timeout > 0) {
+                    clearTimeout(this.hideTimer);
+                    this.hideTimer = setTimeout(function () {
+                        onRequestClose();
+                    }, timeout);
+                }
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _props3 = this.props,
+                    message = _props3.message,
+                    onPress = _props3.onPress;
+                var _state = this.state,
+                    styles = _state.styles,
+                    bottomPosition = _state.bottomPosition;
+                var containerStyle = {
+                    opacity: this.visibility.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [0, 1]
+                    })
+                };
+                var combinedStyle = [containerStyle, styles.container, {
+                    bottom: bottomPosition
+                }];
+                return _react3.default.createElement(
+                    _reactNative.Animated.View,
+                    {
+                        style: this.state.visible ? combinedStyle : containerStyle,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 230
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.TouchableWithoutFeedback,
+                        {
+                            onPress: onPress,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 233
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: styles.content,
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 234
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: styles.message,
+                                    onLayout: this.onTextLayout,
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 235
+                                    }
+                                },
+                                message
+                            ),
+                            this.renderAction()
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return Snackbar;
+    }(_react2.PureComponent), _initialiseProps = function _initialiseProps() {
+        var _this3 = this;
+
+        this.move = function (bottomNavigation) {
+            var container = _this3.context.uiTheme.bottomNavigation.container;
+            var toValue = bottomNavigation ? _reactNative.StyleSheet.flatten(container).height : 0;
+
+            _this3.setState({
+                bottomPosition: toValue
+            });
+        };
+
+        this.renderAction = function () {
+            var snackbar = _this3.context.uiTheme.snackbar;
+            var _props4 = _this3.props,
+                button = _props4.button,
+                actionText = _props4.actionText,
+                onActionPress = _props4.onActionPress;
+            var styles = {};
+
+            if (actionText && typeof onActionPress === 'function') {
+                styles.container = snackbar.actionContainer;
+                styles.text = snackbar.actionText;
+
+                if (button !== 'undefined' && 'style' in button) {
+                    if ('container' in button.style) {
+                        styles.container = _extends({}, _reactNative.StyleSheet.flatten(snackbar.actionContainer), button.style.container);
+                    }
+
+                    if ('text' in button.style) {
+                        styles.text = _extends({}, _reactNative.StyleSheet.flatten(snackbar.actionText), button.style.text);
+                    }
+                }
+
+                return _react3.default.createElement(_Button2.default, _extends({}, button, {
+                    style: styles,
+                    text: actionText,
+                    onPress: onActionPress,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 205
+                    }
+                }));
+            }
+
+            return null;
+        };
+    }, _temp));
+
+    Snackbar.propTypes = propTypes;
+    Snackbar.defaultProps = defaultProps;
+    Snackbar.contextTypes = contextTypes;
+    exports.default = Snackbar;
+});
