@@ -15,8 +15,10 @@ export default class App extends Component{
 
     state = {
         data: [],
+        search: '',
         bookmarks: [],
         startPage: 0,
+        onSearch: false,
         refresh: false
     }
 
@@ -26,14 +28,15 @@ export default class App extends Component{
         this.setState({
             refresh: true
         })
+
         this.onLoad(this.state.startPage);
     }
 
     onLoad = (startPage, reset = false)=>{
         axios({
             method: 'POST',
-            // url: 'http://192.168.43.142/api/get_mangas.php',
-            url: 'http://192.168.56.1/api/get_mangas.php',
+            url: 'http://192.168.43.142/api/get_mangas.php',
+            // url: 'http://192.168.56.1/api/get_mangas.php',
             headers: { 'content-type': 'application/x-www-form-urlencoded' },
             data: {
               start: startPage,
@@ -73,6 +76,28 @@ export default class App extends Component{
         })
     }
 
+    handleSearch = ()=>{
+        this.setState({
+            refresh: true
+        })
+
+        axios({
+            method: 'POST',
+            url: 'http://192.168.43.142/api/get_mangas.php',
+            // url: 'http://192.168.56.1/api/get_mangas_where.php',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: {
+                where: this.state.search,
+                key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
+            }
+        }).then((result)=>{
+            this.setState({
+                data: result.data.data,
+                refresh:false
+            })
+        })
+    }
+
     handleBookmark = (id)=>{
         let bookmarks = this.state.bookmarks
 
@@ -88,19 +113,33 @@ export default class App extends Component{
     }
 
     handleOnPull = ()=>{
+        if(this.state.onSearch == false){
+            this.setState({
+                refresh: true,
+            })
+    
+            this.onLoad(0,true)
+        }
+    }
+
+    handleOnReach = ()=>{
+        if(this.state.onSearch == false){
+            this.setState({
+                refresh:true
+            })
+            this.onLoad(this.state.startPage)
+        }
+    }
+
+    handleOnSearchBack = ()=>{
         this.setState({
-            refresh: true
+            refresh: true,
+            onSearch: false
         })
 
         this.onLoad(0,true)
     }
 
-    handleOnReach = ()=>{
-        this.setState({
-            refresh:true
-        })
-        this.onLoad(this.state.startPage)
-    }
 
     // AsyncStoragerr
 
@@ -201,15 +240,20 @@ export default class App extends Component{
 
     render(){
         return(
-            <Container style={style.main.container}>
+            <Container style={styles.mainWrapper}>
+
                 <StatusBar backgroundColor='#346ad3'/>
+
                 <ThemeProvider>
                     <Toolbar
                         centerElement="PuManga.com"
                         searchable={{
                             autoFocus: true,
                             placeholder: 'Search',
-                            onSubmitEditing: ()=>alert('search presss')
+                            onChangeText: (search)=>this.setState({search}),
+                            onSearchPressed: ()=>this.setState({onSearch: true}),
+                            onSearchClosed: this.handleOnSearchBack,
+                            onSubmitEditing: this.handleSearch
                         }}
                         rightElement={{
                             menu: {
@@ -241,10 +285,8 @@ export default class App extends Component{
     }
 }
 
-const style = {
-    main: StyleSheet.create({
-        container:{
-            backgroundColor: 'white'
-        }
-    })
-}
+const styles = StyleSheet.create({
+    mainWrapper: {
+        backgroundColor: 'white'
+    }
+})

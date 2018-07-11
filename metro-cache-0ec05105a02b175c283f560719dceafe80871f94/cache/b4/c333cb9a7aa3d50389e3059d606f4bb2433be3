@@ -19,23 +19,17 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var _reactNative = _require(_dependencyMap[2], "react-native");
 
-  var _nativeBase = _require(_dependencyMap[3], "native-base");
-
-  var _reactNativeSwiper = _require(_dependencyMap[4], "react-native-swiper");
+  var _reactNativeSwiper = _require(_dependencyMap[3], "react-native-swiper");
 
   var _reactNativeSwiper2 = _interopRequireDefault(_reactNativeSwiper);
 
-  var _reactNativePhotoView = _require(_dependencyMap[5], "react-native-photo-view");
+  var _reactNativePhotoView = _require(_dependencyMap[4], "react-native-photo-view");
 
   var _reactNativePhotoView2 = _interopRequireDefault(_reactNativePhotoView);
 
-  var _reactNativeSwipeGestures = _require(_dependencyMap[6], "react-native-swipe-gestures");
+  var _reactNativeSwipeGestures = _require(_dependencyMap[5], "react-native-swipe-gestures");
 
   var _reactNativeSwipeGestures2 = _interopRequireDefault(_reactNativeSwipeGestures);
-
-  var _reactNativeModal = _require(_dependencyMap[7], "react-native-modal");
-
-  var _reactNativeModal2 = _interopRequireDefault(_reactNativeModal);
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -63,102 +57,94 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   }
 
   var _Dimensions$get = _reactNative.Dimensions.get('window'),
-      width = _Dimensions$get.width,
-      height = _Dimensions$get.height;
+      width = _Dimensions$get.width;
+
+  var loading = _require(_dependencyMap[6], '../assets/img/loading.gif');
 
   var _component = _wrapComponent("_component")(function (_Component) {
     _inherits(_class2, _Component);
 
-    function _class2() {
-      var _ref;
-
-      var _temp, _this, _ret;
-
+    function _class2(props) {
       _classCallCheck(this, _class2);
 
-      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
+      var _this = _possibleConstructorReturn(this, (_class2.__proto__ || Object.getPrototypeOf(_class2)).call(this, props));
 
-      return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = _class2.__proto__ || Object.getPrototypeOf(_class2)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-        chapterImg: [],
-        status: [{
-          statusIndex: 'onLoad'
-        }],
-        onPage: 0,
-        disableStatusBar: true,
-        modal: {
-          dialogVisible: false,
-          nextOrPrevious: '',
-          title: '',
-          chapter: ''
+      _this.state = {
+        pageList: [],
+        loadQueue: [],
+        page: {
+          index: 1,
+          total: 0
         }
-      }, _this.handleOnLoadComponent = function () {
-        for (var index = 0; index < _this.state.chapterImg.length - 1; index++) {
-          status = _this.state.status;
-          status.push({
-            statusIndex: 'onLoad'
-          });
+      };
 
-          _this.setState({
-            status: status
-          });
-        }
-      }, _this.handleIndexChanged = function (index) {
+      _this.getTotalPage = function () {
         _this.setState({
-          onPage: index
+          page: _extends({}, _this.state.page, {
+            total: _this.state.pageList.length
+          })
         });
-      }, _this.handleOnLoadEnd = function (index) {
-        status = _this.state.status;
-        status[index] = {
-          index: index,
-          statusIndex: 'onLoadEnd'
-        };
+      };
 
+      _this.onIndexChanged = function (index) {
         _this.setState({
-          status: status
+          page: _extends({}, _this.state.page, {
+            index: index + 1
+          })
         });
-      }, _this.handleNextChapter = function () {
-        if (_this.state.onPage == _this.state.status.length - 1) {
-          _this.setState({
-            modal: {
-              dialogVisible: true,
-              nextOrPrevious: 'Baca Chapter Selanjutnya?',
-              title: 'Nanatsu no Taizai',
-              chapter: 'Pertempuran abadi #345'
-            },
-            disableStatusBar: false
-          });
+      };
+
+      _this.nextChapter = function () {
+        if (_this.state.page.index == _this.state.page.total) {
+          alert('nextChapter');
         }
-      }, _this.handlePreviousChapter = function () {
-        if (_this.state.onPage == 0) {
-          _this.setState({
-            modal: {
-              dialogVisible: true,
-              nextOrPrevious: 'Baca Chapter Sebelumnya?',
-              title: 'Nanatsu no Taizai',
-              chapter: 'Pertempuran abadi #343'
-            },
-            disableStatusBar: false
-          });
+      };
+
+      _this.previousChapter = function () {
+        if (_this.state.page.index == 1) {
+          alert('previousChapter');
         }
-      }, _this.handleModalOnClose = function () {
-        _this.setState({
-          modal: _extends({}, _this.state.modal, {
-            dialogVisible: false
-          }),
-          disableStatusBar: true
-        });
-      }, _temp), _possibleConstructorReturn(_this, _ret);
+      };
+
+      return _this;
     }
 
     _createClass(_class2, [{
       key: "componentDidMount",
       value: function componentDidMount() {
+        var pageList;
+        return regeneratorRuntime.async(function componentDidMount$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return regeneratorRuntime.awrap(this.props.navigation.getParam('pageList'));
+
+              case 2:
+                pageList = _context.sent;
+                _context.next = 5;
+                return regeneratorRuntime.awrap(this.setState({
+                  pageList: pageList
+                }));
+
+              case 5:
+                this.getTotalPage();
+
+              case 6:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, null, this);
+      }
+    }, {
+      key: "loadHandle",
+      value: function loadHandle(i) {
+        var loadQueue = this.state.loadQueue;
+        loadQueue[i] = 1;
         this.setState({
-          chapterImg: ['http://www.komikid.com/uploads/manga/c-sword-and-cornett/chapters/001/26.jpg', 'http://www.komikid.com/uploads/manga/c-sword-and-cornett/chapters/001/26.jpg', 'http://www.komikid.com/uploads/manga/c-sword-and-cornett/chapters/001/26.jpg']
+          loadQueue: loadQueue
         });
-        this.handleOnLoadComponent();
       }
     }, {
       key: "render",
@@ -173,279 +159,84 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 112
+              lineNumber: 75
             }
           },
           _react3.default.createElement(_reactNative.StatusBar, {
-            hidden: this.state.disableStatusBar,
+            hidden: true,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 114
+              lineNumber: 76
             }
           }),
           _react3.default.createElement(
-            _reactNativeModal2.default,
+            _reactNative.View,
             {
-              animationIn: "bounceIn",
-              backdropOpacity: 0.5,
-              isVisible: this.state.modal.dialogVisible,
+              style: styles.page,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 116
+                lineNumber: 77
               }
             },
             _react3.default.createElement(
-              _reactNative.View,
+              _reactNative.Text,
               {
-                style: {
-                  flex: 1,
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                },
+                style: styles.pageText,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 117
+                  lineNumber: 78
                 }
               },
-              _react3.default.createElement(
-                _reactNative.View,
-                {
-                  style: {
-                    width: 250,
-                    backgroundColor: 'white',
-                    borderRadius: 10,
-                    padding: 10,
-                    alignItems: 'center'
-                  },
-                  __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 123
-                  }
-                },
-                _react3.default.createElement(
-                  _reactNative.View,
-                  {
-                    style: {
-                      alignSelf: 'flex-end'
-                    },
-                    __source: {
-                      fileName: _jsxFileName,
-                      lineNumber: 131
-                    }
-                  },
-                  _react3.default.createElement(
-                    _reactNative.TouchableNativeFeedback,
-                    {
-                      onPress: this.handleModalOnClose,
-                      background: _reactNative.TouchableNativeFeedback.SelectableBackgroundBorderless(),
-                      __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 134
-                      }
-                    },
-                    _react3.default.createElement(_nativeBase.Icon, {
-                      style: {
-                        fontSize: 25,
-                        color: '#878787'
-                      },
-                      name: "close",
-                      __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 137
-                      }
-                    })
-                  )
-                ),
-                _react3.default.createElement(
-                  _reactNative.View,
-                  {
-                    style: {
-                      alignItems: 'center'
-                    },
-                    __source: {
-                      fileName: _jsxFileName,
-                      lineNumber: 144
-                    }
-                  },
-                  _react3.default.createElement(
-                    _reactNative.Text,
-                    {
-                      style: {
-                        color: '#121212',
-                        marginBottom: 10
-                      },
-                      __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 147
-                      }
-                    },
-                    this.state.modal.nextOrPrevious
-                  ),
-                  _react3.default.createElement(
-                    _reactNative.Text,
-                    {
-                      style: {
-                        color: '#121212'
-                      },
-                      __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 151
-                      }
-                    },
-                    this.state.modal.title
-                  ),
-                  _react3.default.createElement(
-                    _reactNative.Text,
-                    {
-                      __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 154
-                      }
-                    },
-                    this.state.modal.chapter
-                  ),
-                  _react3.default.createElement(
-                    _nativeBase.Button,
-                    {
-                      onPress: function onPress() {
-                        return alert('onpress ya');
-                      },
-                      rounded: true,
-                      style: {
-                        width: 100,
-                        height: 30,
-                        alignSelf: 'center',
-                        justifyContent: 'center',
-                        margin: 20,
-                        backgroundColor: '#568BF2'
-                      },
-                      __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 155
-                      }
-                    },
-                    _react3.default.createElement(
-                      _reactNative.Text,
-                      {
-                        style: {
-                          color: 'white'
-                        },
-                        full: true,
-                        __source: {
-                          fileName: _jsxFileName,
-                          lineNumber: 163
-                        }
-                      },
-                      "Ya"
-                    )
-                  )
-                )
-              )
+              this.state.page.index,
+              "/",
+              this.state.page.total
             )
           ),
           _react3.default.createElement(
             _reactNativeSwiper2.default,
             {
+              showsPagination: false,
+              loadMinimal: true,
+              loadMinimalSize: 1,
               style: styles.wrapper,
-              onIndexChanged: this.handleIndexChanged,
-              renderPagination: function renderPagination(index, total, context) {
-                return _react3.default.createElement(
-                  _reactNative.View,
-                  {
-                    __source: {
-                      fileName: _jsxFileName,
-                      lineNumber: 180
-                    }
-                  },
-                  _react3.default.createElement(
-                    _reactNative.View,
-                    {
-                      style: styles.paginationStyle,
-                      __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 181
-                      }
-                    },
-                    _react3.default.createElement(
-                      _reactNative.Text,
-                      {
-                        style: styles.paginationText,
-                        __source: {
-                          fileName: _jsxFileName,
-                          lineNumber: 182
-                        }
-                      },
-                      index + 1,
-                      "/",
-                      total,
-                      _this2.state.status[index].statusIndex == 'onLoad' ? _react3.default.createElement(
-                        _reactNative.Text,
-                        {
-                          __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 185
-                          }
-                        },
-                        " Loading Bosqqq.."
-                      ) : null
-                    )
-                  ),
-                  _this2.state.status[index].statusIndex == 'onLoad' ? _react3.default.createElement(
-                    _reactNative.View,
-                    {
-                      style: styles.onLoad,
-                      __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 191
-                      }
-                    },
-                    _react3.default.createElement(_reactNative.ActivityIndicator, {
-                      size: "large",
-                      color: "#0000ff",
-                      __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 192
-                      }
-                    })
-                  ) : null
-                );
-              },
               loop: false,
+              onIndexChanged: function onIndexChanged(index) {
+                return _this2.onIndexChanged(index);
+              },
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 176
+                lineNumber: 80
               }
             },
-            this.state.chapterImg.map(function (item, indexes) {
+            this.state.pageList.map(function (item, i) {
               return _react3.default.createElement(
                 _reactNative.View,
                 {
                   style: styles.slide,
-                  key: indexes,
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 202
+                    lineNumber: 91
                   }
                 },
                 _react3.default.createElement(
                   _reactNativeSwipeGestures2.default,
                   {
-                    onSwipeLeft: _this2.handleNextChapter,
-                    onSwipeRight: _this2.handlePreviousChapter,
+                    onSwipeLeft: _this2.nextChapter,
+                    onSwipeRight: _this2.previousChapter,
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 203
+                      lineNumber: 93
                     }
                   },
                   _react3.default.createElement(_reactNativePhotoView2.default, {
                     source: {
-                      uri: item
+                      uri: item.image
                     },
                     minimumZoomScale: 0.5,
                     maximumZoomScale: 3,
                     androidScaleType: "fitCenter",
-                    onLoadEnd: function onLoadEnd() {
-                      return _this2.handleOnLoadEnd(indexes);
+                    onLoad: function onLoad() {
+                      return _this2.loadHandle(i);
                     },
                     style: {
                       width: _reactNative.Dimensions.get('window').width,
@@ -453,9 +244,27 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     },
                     __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 207
+                      lineNumber: 98
                     }
-                  })
+                  }),
+                  !!!_this2.state.loadQueue[i] && _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                      style: styles.loadingView,
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 110
+                      }
+                    },
+                    _react3.default.createElement(_reactNative.Image, {
+                      style: styles.loadingImage,
+                      source: loading,
+                      __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 111
+                      }
+                    })
+                  )
                 )
               );
             })
@@ -470,29 +279,43 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   exports.default = _component;
   var styles = {
     wrapper: {},
+    page: {
+      position: 'absolute',
+      bottom: 5,
+      left: 5,
+      backgroundColor: 'rgba(0,0,0,0.3)',
+      borderRadius: 3,
+      zIndex: 1,
+      paddingLeft: 5,
+      paddingRight: 5
+    },
+    pageText: {
+      color: 'white',
+      fontSize: 12
+    },
     slide: {
       flex: 1,
       justifyContent: 'center',
       backgroundColor: 'white'
     },
-    paginationStyle: {
-      position: 'absolute',
-      bottom: 5,
-      left: 5,
-      backgroundColor: 'rgba(0, 0, 0, 0.3)',
-      padding: 2,
-      borderRadius: 5,
-      zIndex: 9
+    image: {
+      width: width,
+      flex: 1,
+      backgroundColor: 'white'
     },
-    paginationText: {
-      color: 'white',
-      fontSize: 11
-    },
-    onLoad: {
+    loadingView: {
       position: 'absolute',
-      left: width / 2 - 16,
-      bottom: height / 2 - 16,
-      zIndex: 10
+      justifyContent: 'center',
+      alignItems: 'center',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      backgroundColor: 'white'
+    },
+    loadingImage: {
+      width: 60,
+      height: 60
     }
   };
 });

@@ -21,6 +21,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
     var _reactNativeMaterialUi = _require(_dependencyMap[4], "react-native-material-ui");
 
+    var _axios = _require(_dependencyMap[5], "axios");
+
+    var _axios2 = _interopRequireDefault(_axios);
+
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -30,6 +34,9 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
     var _components = {
+        Main: {
+            displayName: "Main"
+        },
         App: {
             displayName: "App"
         }
@@ -52,19 +59,471 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
     var imgResize = screenWidth / 9 * 4 / 65.25;
 
-    var App = _wrapComponent("App")(function (_Component) {
-        _inherits(App, _Component);
+    var Main = _wrapComponent("Main")(function (_Component) {
+        _inherits(Main, _Component);
 
-        function App() {
-            _classCallCheck(this, App);
+        function Main() {
+            _classCallCheck(this, Main);
 
-            return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+            return _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).apply(this, arguments));
         }
 
-        _createClass(App, [{
+        _createClass(Main, [{
             key: "render",
             value: function render() {
                 var _this2 = this;
+
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: {
+                            flex: 1
+                        },
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 16
+                        }
+                    },
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: {
+                                flex: 3,
+                                flexDirection: 'row',
+                                padding: 5
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 20
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: {
+                                    flex: 4,
+                                    alignItems: 'center',
+                                    justifyContent: 'flex-start',
+                                    paddingTop: 10
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 26
+                                }
+                            },
+                            _react3.default.createElement(_reactNative.Image, {
+                                style: {
+                                    width: imgResize * 55,
+                                    height: imgResize * 75,
+                                    borderRadius: 8
+                                },
+                                source: {
+                                    uri: this.props.img
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 33
+                                }
+                            })
+                        ),
+                        _react3.default.createElement(
+                            _reactNative.View,
+                            {
+                                style: {
+                                    flex: 5
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 44
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: {
+                                        fontSize: 12,
+                                        color: '#989898',
+                                        marginTop: 10
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 47
+                                    }
+                                },
+                                "Name"
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: {
+                                        color: '#121212',
+                                        marginBottom: 10
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 54
+                                    }
+                                },
+                                this.props.title
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: {
+                                        flexDirection: 'row'
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 59
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: {
+                                            flex: 1
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 62
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                fontSize: 12,
+                                                color: '#989898'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 66
+                                            }
+                                        },
+                                        "Ranked #",
+                                        this.props.ranked
+                                    )
+                                ),
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: {
+                                            flex: 1
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 72
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                fontSize: 12,
+                                                color: '#989898'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 75
+                                            }
+                                        },
+                                        "Popularity #",
+                                        this.props.popularity
+                                    )
+                                )
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: {
+                                        backgroundColor: '#568BF2',
+                                        borderRadius: 50,
+                                        width: 30,
+                                        marginTop: 2,
+                                        marginBottom: 10
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 81
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: {
+                                            textAlign: 'center',
+                                            color: 'white',
+                                            fontSize: 11
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 88
+                                        }
+                                    },
+                                    this.props.score
+                                )
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: {
+                                        flexDirection: 'row'
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 94
+                                    }
+                                },
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: {
+                                            flex: 1
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 97
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                fontSize: 12,
+                                                color: '#121212'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 101
+                                            }
+                                        },
+                                        "Source"
+                                    ),
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                fontSize: 12,
+                                                color: '#989898'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 105
+                                            }
+                                        },
+                                        "Myanimelist"
+                                    )
+                                ),
+                                _react3.default.createElement(
+                                    _reactNative.View,
+                                    {
+                                        style: {
+                                            flex: 1
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 111
+                                        }
+                                    },
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                fontSize: 12,
+                                                color: '#121212'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 114
+                                            }
+                                        },
+                                        "Last Update"
+                                    ),
+                                    _react3.default.createElement(
+                                        _reactNative.Text,
+                                        {
+                                            style: {
+                                                fontSize: 12,
+                                                color: '#989898'
+                                            },
+                                            __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 118
+                                            }
+                                        },
+                                        "17 April"
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: {
+                                flex: 4,
+                                backgroundColor: '#f7f7f7'
+                            },
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 129
+                            }
+                        },
+                        _react3.default.createElement(
+                            _nativeBase.Content,
+                            {
+                                style: {
+                                    padding: 10
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 134
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.View,
+                                {
+                                    style: {
+                                        flexDirection: 'row',
+                                        alignItems: 'center',
+                                        marginBottom: 10
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 137
+                                    }
+                                },
+                                _react3.default.createElement(_reactNative.View, {
+                                    style: {
+                                        width: 7,
+                                        height: 7,
+                                        backgroundColor: '#568BF2',
+                                        borderRadius: 50
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 142
+                                    }
+                                }),
+                                _react3.default.createElement(
+                                    _reactNative.Text,
+                                    {
+                                        style: {
+                                            color: '#121212',
+                                            marginLeft: 5
+                                        },
+                                        __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 148
+                                        }
+                                    },
+                                    "Synopsis"
+                                )
+                            ),
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: {
+                                        paddingBottom: 20
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 153
+                                    }
+                                },
+                                this.props.synopsis
+                            )
+                        ),
+                        _react3.default.createElement(
+                            _nativeBase.Button,
+                            {
+                                full: true,
+                                onPress: function onPress() {
+                                    return _this2.props.navigation.navigate('ChapterList');
+                                },
+                                style: {
+                                    backgroundColor: '#568BF2'
+                                },
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 157
+                                }
+                            },
+                            _react3.default.createElement(
+                                _reactNative.Text,
+                                {
+                                    style: {
+                                        color: 'white'
+                                    },
+                                    __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 160
+                                    }
+                                },
+                                "Read now"
+                            )
+                        )
+                    )
+                );
+            }
+        }]);
+
+        return Main;
+    }(_react2.Component));
+
+    var App = _wrapComponent("App")(function (_Component2) {
+        _inherits(App, _Component2);
+
+        function App() {
+            var _ref;
+
+            var _temp, _this3, _ret;
+
+            _classCallCheck(this, App);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this3 = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this3), _this3.state = {
+                manga: {
+                    title: 'jondes'
+                },
+                refresh: false
+            }, _temp), _possibleConstructorReturn(_this3, _ret);
+        }
+
+        _createClass(App, [{
+            key: "componentDidMount",
+            value: function componentDidMount() {
+                var _this4 = this;
+
+                this.setState({
+                    refresh: true
+                });
+                (0, _axios2.default)({
+                    method: 'POST',
+                    url: 'http://192.168.43.142/api/get_manga_details.php',
+                    headers: {
+                        'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    data: {
+                        id: 29,
+                        key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
+                    }
+                }).then(function (result) {
+                    _this4.setState({
+                        manga: result.data.data[0],
+                        refresh: false
+                    });
+                }).catch(function (result) {
+                    alert(result);
+                });
+            }
+        }, {
+            key: "render",
+            value: function render() {
+                var _this5 = this;
 
                 return _react3.default.createElement(
                     _nativeBase.Container,
@@ -72,14 +531,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         style: style.main.container,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 14
+                            lineNumber: 209
                         }
                     },
                     _react3.default.createElement(_reactNative.StatusBar, {
                         backgroundColor: "#346ad3",
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 15
+                            lineNumber: 210
                         }
                     }),
                     _react3.default.createElement(
@@ -87,14 +546,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 16
+                                lineNumber: 211
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
                             leftElement: "arrow-back",
                             centerElement: "Manga Details",
                             onLeftElementPress: function onLeftElementPress() {
-                                return _this2.props.navigation.goBack();
+                                return _this5.props.navigation.goBack();
                             },
                             style: {
                                 container: {
@@ -103,400 +562,42 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 17
+                                lineNumber: 212
                             }
                         })
                     ),
-                    _react3.default.createElement(
+                    this.state.refresh == true ? _react3.default.createElement(
                         _reactNative.View,
                         {
                             style: {
-                                flex: 1
+                                flex: 1,
+                                alignItems: 'center',
+                                justifyContent: 'center'
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 28
+                                lineNumber: 227
                             }
                         },
-                        _react3.default.createElement(
-                            _reactNative.View,
-                            {
-                                style: {
-                                    flex: 3,
-                                    flexDirection: 'row',
-                                    padding: 5
-                                },
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 32
-                                }
-                            },
-                            _react3.default.createElement(
-                                _reactNative.View,
-                                {
-                                    style: {
-                                        flex: 4,
-                                        alignItems: 'center',
-                                        justifyContent: 'flex-start',
-                                        paddingTop: 10
-                                    },
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 38
-                                    }
-                                },
-                                _react3.default.createElement(_reactNative.Image, {
-                                    style: {
-                                        width: imgResize * 55,
-                                        height: imgResize * 75,
-                                        borderRadius: 8
-                                    },
-                                    source: {
-                                        uri: 'https://myanimelist.cdn-dena.com/images/manga/2/153111.jpg'
-                                    },
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 45
-                                    }
-                                })
-                            ),
-                            _react3.default.createElement(
-                                _reactNative.View,
-                                {
-                                    style: {
-                                        flex: 5
-                                    },
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 56
-                                    }
-                                },
-                                _react3.default.createElement(
-                                    _reactNative.Text,
-                                    {
-                                        style: {
-                                            fontSize: 12,
-                                            color: '#989898',
-                                            marginTop: 10
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 59
-                                        }
-                                    },
-                                    "Name"
-                                ),
-                                _react3.default.createElement(
-                                    _reactNative.Text,
-                                    {
-                                        style: {
-                                            color: '#121212',
-                                            marginBottom: 10
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 66
-                                        }
-                                    },
-                                    "Nanatsu No Taizai"
-                                ),
-                                _react3.default.createElement(
-                                    _reactNative.View,
-                                    {
-                                        style: {
-                                            flexDirection: 'row'
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 71
-                                        }
-                                    },
-                                    _react3.default.createElement(
-                                        _reactNative.View,
-                                        {
-                                            style: {
-                                                flex: 1
-                                            },
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 74
-                                            }
-                                        },
-                                        _react3.default.createElement(
-                                            _reactNative.Text,
-                                            {
-                                                style: {
-                                                    fontSize: 12,
-                                                    color: '#989898'
-                                                },
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 78
-                                                }
-                                            },
-                                            "Ranked #23"
-                                        )
-                                    ),
-                                    _react3.default.createElement(
-                                        _reactNative.View,
-                                        {
-                                            style: {
-                                                flex: 1
-                                            },
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 84
-                                            }
-                                        },
-                                        _react3.default.createElement(
-                                            _reactNative.Text,
-                                            {
-                                                style: {
-                                                    fontSize: 12,
-                                                    color: '#989898'
-                                                },
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 87
-                                                }
-                                            },
-                                            "Popularity #23"
-                                        )
-                                    )
-                                ),
-                                _react3.default.createElement(
-                                    _reactNative.View,
-                                    {
-                                        style: {
-                                            backgroundColor: '#568BF2',
-                                            borderRadius: 50,
-                                            width: 30,
-                                            marginTop: 2,
-                                            marginBottom: 10
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 93
-                                        }
-                                    },
-                                    _react3.default.createElement(
-                                        _reactNative.Text,
-                                        {
-                                            style: {
-                                                textAlign: 'center',
-                                                color: 'white',
-                                                fontSize: 11
-                                            },
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 100
-                                            }
-                                        },
-                                        "6.9"
-                                    )
-                                ),
-                                _react3.default.createElement(
-                                    _reactNative.View,
-                                    {
-                                        style: {
-                                            flexDirection: 'row'
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 106
-                                        }
-                                    },
-                                    _react3.default.createElement(
-                                        _reactNative.View,
-                                        {
-                                            style: {
-                                                flex: 1
-                                            },
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 109
-                                            }
-                                        },
-                                        _react3.default.createElement(
-                                            _reactNative.Text,
-                                            {
-                                                style: {
-                                                    fontSize: 12,
-                                                    color: '#121212'
-                                                },
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 113
-                                                }
-                                            },
-                                            "Source"
-                                        ),
-                                        _react3.default.createElement(
-                                            _reactNative.Text,
-                                            {
-                                                style: {
-                                                    fontSize: 12,
-                                                    color: '#989898'
-                                                },
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 117
-                                                }
-                                            },
-                                            "Myanimelist"
-                                        )
-                                    ),
-                                    _react3.default.createElement(
-                                        _reactNative.View,
-                                        {
-                                            style: {
-                                                flex: 1
-                                            },
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 123
-                                            }
-                                        },
-                                        _react3.default.createElement(
-                                            _reactNative.Text,
-                                            {
-                                                style: {
-                                                    fontSize: 12,
-                                                    color: '#121212'
-                                                },
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 126
-                                                }
-                                            },
-                                            "Last Update"
-                                        ),
-                                        _react3.default.createElement(
-                                            _reactNative.Text,
-                                            {
-                                                style: {
-                                                    fontSize: 12,
-                                                    color: '#989898'
-                                                },
-                                                __source: {
-                                                    fileName: _jsxFileName,
-                                                    lineNumber: 130
-                                                }
-                                            },
-                                            "17 April"
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        _react3.default.createElement(
-                            _reactNative.View,
-                            {
-                                style: {
-                                    flex: 4,
-                                    backgroundColor: '#f7f7f7'
-                                },
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 141
-                                }
-                            },
-                            _react3.default.createElement(
-                                _nativeBase.Content,
-                                {
-                                    style: {
-                                        padding: 10
-                                    },
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 146
-                                    }
-                                },
-                                _react3.default.createElement(
-                                    _reactNative.View,
-                                    {
-                                        style: {
-                                            flexDirection: 'row',
-                                            alignItems: 'center',
-                                            marginBottom: 10
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 149
-                                        }
-                                    },
-                                    _react3.default.createElement(_reactNative.View, {
-                                        style: {
-                                            width: 7,
-                                            height: 7,
-                                            backgroundColor: '#568BF2',
-                                            borderRadius: 50
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 154
-                                        }
-                                    }),
-                                    _react3.default.createElement(
-                                        _reactNative.Text,
-                                        {
-                                            style: {
-                                                color: '#121212',
-                                                marginLeft: 5
-                                            },
-                                            __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 160
-                                            }
-                                        },
-                                        "Synopsis"
-                                    )
-                                ),
-                                _react3.default.createElement(
-                                    _reactNative.Text,
-                                    {
-                                        style: {
-                                            paddingBottom: 20
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 165
-                                        }
-                                    },
-                                    "The \"Seven Deadly Sins,\" a group of evil knights who conspired to overthrow the kingdom of Britannia, were said to have been eradicated by the Holy Knights, although some claim that they still live. Ten years later, the Holy Knights have staged a Coup d'\xE9tat and captured the king, becoming the new, tyrannical rulers of the kingdom. Elizabeth, the king's third daughter, sets out on a journey to find the \"Seven Deadly Sins,\" and to enlist their help in taking back the kingdom. The \"Seven Deadly Sins,\" a group of evil knights who conspired to overthrow the kingdom of Britannia, were said to have been eradicated by the Holy Knights, although some claim that they still live. Ten years later, the Holy Knights have staged a Coup d'\xE9tat and captured the king, becoming the new, tyrannical rulers of the kingdom. Elizabeth, the king's third daughter, sets out on a journey to find the \"Seven Deadly Sins,\" and to enlist their help in taking back the kingdom."
-                                )
-                            ),
-                            _react3.default.createElement(
-                                _nativeBase.Button,
-                                {
-                                    full: true,
-                                    onPress: function onPress() {
-                                        return _this2.props.navigation.navigate('ChapterList');
-                                    },
-                                    style: {
-                                        backgroundColor: '#568BF2'
-                                    },
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 172
-                                    }
-                                },
-                                _react3.default.createElement(
-                                    _reactNative.Text,
-                                    {
-                                        style: {
-                                            color: 'white'
-                                        },
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 175
-                                        }
-                                    },
-                                    "Read now"
-                                )
-                            )
-                        )
-                    )
+                        _react3.default.createElement(_nativeBase.Spinner, {
+                            color: "blue",
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 232
+                            }
+                        })
+                    ) : _react3.default.createElement(Main, {
+                        img: this.state.manga.img,
+                        title: this.state.manga.title,
+                        ranked: this.state.manga.ranked,
+                        popularity: this.state.manga.popularity,
+                        score: this.state.manga.score,
+                        synopsis: this.state.manga.synopsis,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 236
+                        }
+                    })
                 );
             }
         }]);

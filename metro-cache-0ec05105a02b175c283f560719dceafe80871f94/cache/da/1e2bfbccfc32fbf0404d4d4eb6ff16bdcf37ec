@@ -73,8 +73,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
             return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
                 data: [],
+                search: '',
                 bookmarks: [],
                 startPage: 0,
+                onSearch: false,
                 refresh: false
             }, _this.onLoad = function (startPage) {
                 var reset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
@@ -115,7 +117,28 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         alert('Terjadi Kesalahan :(');
                     }
                 }).catch(function () {
-                    alert('Terjadi Kesalahn :(');
+                    alert('Terjadi Kesalahan :(');
+                });
+            }, _this.handleSearch = function () {
+                _this.setState({
+                    refresh: true
+                });
+
+                (0, _axios2.default)({
+                    method: 'POST',
+                    url: 'http://192.168.43.142/api/get_mangas.php',
+                    headers: {
+                        'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    data: {
+                        where: _this.state.search,
+                        key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
+                    }
+                }).then(function (result) {
+                    _this.setState({
+                        data: result.data.data,
+                        refresh: false
+                    });
                 });
             }, _this.handleBookmark = function (id) {
                 var bookmarks = _this.state.bookmarks;
@@ -134,17 +157,28 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
                 _this._storeData(JSON.stringify(bookmarks));
             }, _this.handleOnPull = function () {
+                if (_this.state.onSearch == false) {
+                    _this.setState({
+                        refresh: true
+                    });
+
+                    _this.onLoad(0, true);
+                }
+            }, _this.handleOnReach = function () {
+                if (_this.state.onSearch == false) {
+                    _this.setState({
+                        refresh: true
+                    });
+
+                    _this.onLoad(_this.state.startPage);
+                }
+            }, _this.handleOnSearchBack = function () {
                 _this.setState({
-                    refresh: true
+                    refresh: true,
+                    onSearch: false
                 });
 
                 _this.onLoad(0, true);
-            }, _this.handleOnReach = function () {
-                _this.setState({
-                    refresh: true
-                });
-
-                _this.onLoad(_this.state.startPage);
             }, _this._retrieveData = function _callee() {
                 var value;
                 return regeneratorRuntime.async(function _callee$(_context) {
@@ -214,7 +248,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         },
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 142
+                            lineNumber: 181
                         }
                     },
                     _react3.default.createElement(
@@ -222,7 +256,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 143
+                                lineNumber: 182
                             }
                         },
                         _react3.default.createElement(
@@ -234,7 +268,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 },
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 144
+                                    lineNumber: 183
                                 }
                             },
                             _react3.default.createElement(
@@ -246,7 +280,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 146
+                                        lineNumber: 185
                                     }
                                 },
                                 _react3.default.createElement(_reactNative.Image, {
@@ -260,7 +294,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 147
+                                        lineNumber: 186
                                     }
                                 }),
                                 _react3.default.createElement(
@@ -272,7 +306,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                         },
                                         __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 155
+                                            lineNumber: 194
                                         }
                                     },
                                     _react3.default.createElement(
@@ -283,7 +317,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 159
+                                                lineNumber: 198
                                             }
                                         },
                                         item.title
@@ -300,7 +334,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 162
+                                                lineNumber: 201
                                             }
                                         },
                                         _react3.default.createElement(
@@ -313,7 +347,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                                 },
                                                 __source: {
                                                     fileName: _jsxFileName,
-                                                    lineNumber: 169
+                                                    lineNumber: 208
                                                 }
                                             },
                                             item.score
@@ -328,7 +362,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 175
+                                                lineNumber: 214
                                             }
                                         },
                                         "Popularity #",
@@ -343,7 +377,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                             },
                                             __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 179
+                                                lineNumber: 218
                                             }
                                         },
                                         "Ranked #",
@@ -364,7 +398,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     },
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 185
+                                        lineNumber: 224
                                     }
                                 },
                                 _react3.default.createElement(_nativeBase.Icon, {
@@ -375,7 +409,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     name: _this.state.bookmarks.includes(item.id) == true ? 'ios-heart' : 'ios-heart-outline',
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 190
+                                        lineNumber: 229
                                     }
                                 })
                             )
@@ -398,20 +432,22 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         }, {
             key: "render",
             value: function render() {
+                var _this3 = this;
+
                 return _react3.default.createElement(
                     _nativeBase.Container,
                     {
-                        style: style.main.container,
+                        style: styles.mainWrapper,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 204
+                            lineNumber: 243
                         }
                     },
                     _react3.default.createElement(_reactNative.StatusBar, {
                         backgroundColor: "#346ad3",
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 205
+                            lineNumber: 245
                         }
                     }),
                     _react3.default.createElement(
@@ -419,7 +455,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 206
+                                lineNumber: 247
                             }
                         },
                         _react3.default.createElement(_reactNativeMaterialUi.Toolbar, {
@@ -427,9 +463,18 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             searchable: {
                                 autoFocus: true,
                                 placeholder: 'Search',
-                                onSubmitEditing: function onSubmitEditing() {
-                                    return alert('search presss');
-                                }
+                                onChangeText: function onChangeText(search) {
+                                    return _this3.setState({
+                                        search: search
+                                    });
+                                },
+                                onSearchPressed: function onSearchPressed() {
+                                    return _this3.setState({
+                                        onSearch: true
+                                    });
+                                },
+                                onSearchClosed: this.handleOnSearchBack,
+                                onSubmitEditing: this.handleSearch
                             },
                             rightElement: {
                                 menu: {
@@ -447,7 +492,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             },
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 207
+                                lineNumber: 248
                             }
                         })
                     ),
@@ -461,7 +506,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                         renderItem: this._renderItem,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 229
+                            lineNumber: 273
                         }
                     })
                 );
@@ -472,11 +517,10 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     }(_react2.Component));
 
     exports.default = App;
-    var style = {
-        main: _reactNative.StyleSheet.create({
-            container: {
-                backgroundColor: 'white'
-            }
-        })
-    };
+
+    var styles = _reactNative.StyleSheet.create({
+        mainWrapper: {
+            backgroundColor: 'white'
+        }
+    });
 });

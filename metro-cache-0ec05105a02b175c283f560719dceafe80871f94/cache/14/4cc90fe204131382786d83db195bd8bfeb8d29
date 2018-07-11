@@ -1,9 +1,0 @@
-__d(function (global, _require, module, exports, _dependencyMap) {
-  var _src = _require(_dependencyMap[0], "./src/");
-
-  var _src2 = _interopRequireDefault(_src);
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-  module.exports = _src2.default;
-});

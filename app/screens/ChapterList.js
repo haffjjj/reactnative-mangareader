@@ -7,15 +7,74 @@ import { ThemeProvider } from 'react-native-material-ui'
 
 import Modal from "react-native-modal"
 
+import axios from 'axios'
+
 export default class App extends Component{
 
     state = {
-        data: [
-            {
-                id: 1
+        data: [],
+        modal: false,
+        refresh: false
+    }
+
+    componentDidMount(){
+        this.setState({
+            refresh: true
+        })
+
+        this.onLoad()
+        
+    }
+
+    onLoad = ()=>{
+        axios({
+            method: 'POST',
+            url: 'http://192.168.43.142/api/get_chapters.php',
+            // url: 'http://192.168.56.1/api/get_chapters.php',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: {
+                id: 59,
+                start: 0,
+                rows: 10,
+                key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
             }
-        ],
-        modal: false
+        }).then((result)=>{
+            this.setState({
+                data: result.data.data,
+                refresh:false
+            })
+        }).catch((result)=>{
+            alert(result)
+        })
+    }
+
+    handleOnPull = ()=>{
+        this.setState({
+            refresh: true
+        })
+        this.onLoad()
+    }
+
+    goPages = ()=>{
+
+        axios({
+            method: 'POST',
+            url: 'http://192.168.43.142/api/get_pages.php',
+            // url: 'http://192.168.56.1/api/get_pages.php',
+            headers: { 'content-type': 'application/x-www-form-urlencoded' },
+            data: {
+                id: 82,
+                key: 'da3a9900-5c2e-4ee1-a660-94929dddf08e'
+            }
+        }).then((result)=>{
+
+            this.props.navigation.navigate('Chapter',{
+                pageList: result.data.data
+            })
+
+        }).catch((result)=>{
+            alert(result)
+        })
     }
 
     _keyExtractor = (item, index) => item.id;
@@ -25,15 +84,15 @@ export default class App extends Component{
     };
 
     _renderItem = ({item}) => (
-        <ListItem onPress={()=>this.props.navigation.navigate('Chapter')}>
+        <ListItem onPress={this.goPages}>
             <Body>
                 <Text style={{
                     color: '#121212'
-                }}>Chapter #01</Text>
+                }}>Chapter #{item.chapter}</Text>
                 <Text style={{
                     color: '#878787',
                     fontSize: 12
-                }}>Pertempuran Abadi</Text>
+                }}>{item.title}</Text>
             </Body>
             <Right>
                 <Button transparent onPress={()=>this.handleModal(true)}>
@@ -125,10 +184,11 @@ export default class App extends Component{
                         color: '878787'
                     }}>Nanatsu no Taizai</Text>
                 </View>
+                {/* <Text>{JSON.stringify(this.state.data)}</Text> */}
                 <FlatList
-                    refreshing = {false}
-                    onRefresh = {()=>alert('onPull')}
-                    // onEndReachedThreshold = {0.1}
+                    refreshing = {this.state.refresh}
+                    onRefresh = {this.handleOnPull}
+                    onEndReachedThreshold = {0.1}
                     // onEndReached = {() =>alert('end reach')}
                     data={this.state.data}
                     // extraData={this.state.data}

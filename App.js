@@ -44,18 +44,18 @@ export default createStackNavigator({
     Main: {
         screen: Main
     },
-    MangaDetails: {
-        screen: Screens.MangaDetails
-    },
-    ChapterList: {
-        screen: Screens.ChapterList
-    },
-    Chapter: {
-        screen: Screens.Chapter,
-        navigationOptions: {
-            header: null
-        }
-    }
+    // // MangaDetails: {
+    // //     screen: Screens.MangaDetails
+    // // },
+    // ChapterList: {
+    //     screen: Screens.ChapterList
+    // },
+    // Chapter: {
+    //     screen: Screens.Chapter,
+    //     navigationOptions: {
+    //         header: null
+    //     }
+    // }
 }, {
     headerMode: 'none',
     mode: 'card'
